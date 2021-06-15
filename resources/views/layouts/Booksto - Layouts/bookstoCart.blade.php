@@ -127,7 +127,19 @@
         <div id="content-page" class="content-page">
             <div class="container-fluid">
                 <div class="row">
-                    @yield('content')
+                    <div class="col-sm-12">
+                        <div class="iq-card">
+                            <div class="iq-card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <img src="{{ asset('bookstore/images/logo.png') }}"
+                                            class="img-fluid avatar-100" alt="">
+                                    </div>
+                                </div>
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

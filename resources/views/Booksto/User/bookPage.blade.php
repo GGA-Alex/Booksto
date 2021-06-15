@@ -91,7 +91,7 @@
                                     @endforeach
                                 </div>
                                 <div class="mb-4 d-flex align-items-center">
-                                    <a href="#" class="btn btn-primary view-more mr-2">Agregar al carrito</a>
+                                    @livewire('add-cart-item',['book'=>$book])
                                 </div>
                             </div>
                         </div>

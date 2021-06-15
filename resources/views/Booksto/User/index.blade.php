@@ -79,10 +79,6 @@
                                             <div class="price d-flex align-items-center">
                                                 <h6><b>${{ $book->price }}</b></h6>
                                             </div>
-                                            <div class="iq-product-action">
-                                                <a href="javascript:void();"><i
-                                                        class="ri-shopping-cart-2-fill text-primary"></i></a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CreateOrderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShoppingCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +23,6 @@ Route::get('/categorias', [CategoryController::class, 'show'])->name('CategoryPa
 
 Route::get('libro/{book}', [PageController::class, 'BookPage'])->name('books.show');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [PageController::class, 'HomePage'])->name('HomePageVerified');
+Route::get('shopping-cart', [ShoppingCartController::class, 'index'])->name('shopping-cart');
+
+Route::get('ordenes/crear', [CreateOrderController::class, 'index'])->middleware('auth')->name('ordenes.crear');
