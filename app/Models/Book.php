@@ -14,16 +14,15 @@ class Book extends Model
 
     protected $fillable = [
         'isbn',
-        'name',
-        'description',
-        'pages',
-        'quantity',
-        'price',
-        'year',
-        'edition',
+        'nombre',
+        'descripcion',
+        'paginas',
+        'precio',
+        'año',
+        'edicion',
         'status',
         'slug',
-        'subcategory_id',
+        'category_id',
         'editorial_id'
     ];
 
@@ -32,7 +31,7 @@ class Book extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function editorials()
+    public function editorial()
     {
         return $this->belongsTo(Editorial::class);
     }

@@ -6,8 +6,9 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CreateOrderController;
 use App\Http\Controllers\EditorialController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,22 @@ Route::get('carrito', [ShoppingCartController::class, 'index'])->name('shopping-
 
 Route::get('ordenes/crear', [CreateOrderController::class, 'index'])->middleware('auth')->name('ordenes.crear');
 
-Route::resource('libros', BookController::class);
 
-Route::resource('categorias', CategoryController::class);
 
-Route::resource('editoriales', EditorialController::class);
+// Rutas administrador
 
-Route::resource('autores', AuthorController::class);
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
+    Route::resource('/admin/categorias', CategoryController::class);
+
+    Route::resource('/admin/editoriales', EditorialController::class);
+
+    Route::resource('/admin/autores', AuthorController::class);
+
+    Route::resource('/admin/libros', BookController::class);
+
+    Route::post('admins/libros/{libro}/imagenes', [BookController::class, 'imagenes'])->name('admin.libros.imagenes');
+
+});

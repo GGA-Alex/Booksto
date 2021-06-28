@@ -16,7 +16,7 @@ class Author extends Model
         'imagen'
     ];
 
-    public function books()
+    public function libros()
     {
         return $this->belongsToMany(Book::class);
     }

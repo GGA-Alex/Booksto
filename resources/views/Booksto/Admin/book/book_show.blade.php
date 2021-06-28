@@ -1,5 +1,18 @@
 @extends('layouts\Booksto - Layouts\booksto')
 
+@section('pageName')
+    <div class="navbar-breadcrumb">
+        <h5 class="mb-0">Libros</h5>
+        <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="admin.index">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('libros.index') }}">Listado de Categorias</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $libro->nombre }}</li>
+            </ul>
+        </nav>
+    </div>
+@endsection
+
 @section('content')
     <div class="col-sm-12">
         <div class="iq-card">
@@ -13,7 +26,7 @@
             </div>
             <div class="iq-card-body">
                 <div class="table-responsive">
-                    <table class="data-tables table table-striped table-bordered" style="width:100%">
+                    <table class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th style="width: 3%;">Id</th>
@@ -27,23 +40,40 @@
                             </tr>
                         </thead>
                         <tbody>
-                                <tr>
-                                    <td>{{ $book->id }}</td>
-                                    <td>
-                                        <img class="img-fluid rounded" src={{ Storage::url($book->images->first()->url) }} alt="">
-                                    </td>
-                                    <td>{{ $book->name }}</td>
-                                    <td>{{ $book->category->name }}</td>
-                                    <td>
-                                        @foreach ($book->authors as $author)
-                                            <p>{{ $author->name }}</p>
+                            <tr>
+                                <td>{{ $libro->id }}</td>
+                                <td>
+                                    @if ($libro->images->count())
+                                        @foreach ($libro->images as $image)
+                                            <img class="img-fluid rounded" src={{ Storage::url($image->url) }} alt="">
                                         @endforeach
-                                    </td>
-                                    <td>
-                                        <p class="mb-0"> {{ $book->description }} </p>
-                                    </td>
-                                    <td>${{ $book->price }}</td>
-                                </tr>
+                                    @else
+                                        <img class="img-fluid rounded" src="{{ asset('bookstore/images/logo.png') }}"
+                                            alt="">
+                                    @endif
+                                </td>
+                                <td>{{ $libro->nombre }}</td>
+                                <td>{{ $libro->category->nombre }}</td>
+                                <td>
+                                    @foreach ($libro->authors as $author)
+                                        <p>{{ $author->nombre }}</p>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <p class="mb-0"> {{ $libro->descripcion }} </p>
+                                </td>
+                                <td>${{ $libro->precio }}</td>
+                                <td>
+                                    <form action="{{ route('libros.destroy', $libro) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <span class="table-remove">
+                                            <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">Eliminar
+                                                Libro</button>
+                                        </span>
+                                    </form>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

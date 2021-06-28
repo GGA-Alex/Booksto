@@ -101,7 +101,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $categoria)
     {
         $request->validate([
-            'nombre' => ['required','string','min:5','max:255',Rule::unique('categories')->ignore($categoria->nombre)],
+            'nombre' => ['required','string','min:5','max:255',Rule::unique('categories')->ignore($categoria->id)],
             'descripcion' => 'required|string|min:20|max:2000'
         ]);
         

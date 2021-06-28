@@ -17,21 +17,20 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('isbn')->unique();
-            $table->string('name');
-            $table->text('description');
-            $table->integer('pages');
-            $table->integer('quantity');
-            $table->float('price');
-            $table->integer('year');
-            $table->integer('edition');
+            $table->string('nombre');
+            $table->text('descripcion');
+            $table->integer('paginas');
+            $table->float('precio');
+            $table->integer('año');
+            $table->integer('edicion');
             $table->enum('status', [Book::published, Book::notPublished]);
             $table->string('slug');
 
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories');
             
             $table->unsignedBigInteger('editorial_id');
-            $table->foreign('editorial_id')->references('id')->on('editorials')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('editorial_id')->references('id')->on('editorials');
             $table->timestamps();
         });
     }
