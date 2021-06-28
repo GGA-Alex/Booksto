@@ -19,10 +19,8 @@
                 <ul id="newrealease-slider" class="list-inline p-0 m-0 d-flex align-items-center">
                     @foreach ($books as $book)
                         <li class="item">
-                            <a href="javascript:void(0);">
-                                <img src="{{ Storage::url($book->images->first()->url) }}" class="img-fluid w-100 rounded"
-                                    alt="">
-                            </a>
+                            <img src="{{ Storage::url($book->images->first()->url) }}" class="img-fluid w-100 rounded"
+                                alt="">
                         </li>
                     @endforeach
 
@@ -37,7 +35,7 @@
                     <h4 class="card-title mb-0">Recomendaciones</h4>
                 </div>
                 <div class="iq-card-header-toolbar d-flex align-items-center">
-                    <a href="{{ route('CategoryPage', '1') }}" class="btn btn-sm btn-primary view-more">Ver mas</a>
+                    <a href="{{ route('CategoryPage') }}" class="btn btn-sm btn-primary view-more">Ver mas</a>
                 </div>
             </div>
             <div class="iq-card-body">
@@ -49,13 +47,10 @@
                                     <div class="d-flex align-items-center">
                                         <div class="col-6 p-0 position-relative image-overlap-shadow">
                                             <a href="javascript:void();">
-                                                <img class="img-fluid rounded w-100"
-                                                    src="{{ Storage::url($book->images->first()->url) }}" alt="">
+                                                <img class="img-fluid rounded w-100" src="{{ Storage::url($book->images->first()->url) }}" alt="">
                                             </a>
                                             <div class="view-book">
-                                                <a href="{{ route('books.show', $book) }}"
-                                                    class="btn btn-sm btn-white">Ver
-                                                    detalles</a>
+                                                <a href="{{ route('books.show', $book) }}" class="btn btn-sm btn-white">Ver detalles</a>
                                             </div>
                                         </div>
                                         <div class="col-6">

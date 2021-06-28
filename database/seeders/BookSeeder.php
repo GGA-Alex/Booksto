@@ -15,8 +15,8 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        Book::factory(200)->create()->each(function (Book $book) {
-            Image::factory(4)->create([
+        Book::factory(250)->create()->each(function (Book $book) {
+            Image::factory(2)->create([
                 'imageable_id' => $book->id,
                 'imageable_type' => Book::class
             ]);

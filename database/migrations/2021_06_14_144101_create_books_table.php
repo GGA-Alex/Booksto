@@ -26,10 +26,12 @@ class CreateBooksTable extends Migration
             $table->integer('edition');
             $table->enum('status', [Book::published, Book::notPublished]);
             $table->string('slug');
+
             $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            
             $table->unsignedBigInteger('editorial_id');
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('editorial_id')->references('id')->on('editorials');
+            $table->foreign('editorial_id')->references('id')->on('editorials')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -10,10 +10,10 @@ class Author extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'country',
+        'nombre',
+        'ciudad',
         'slug',
-        'image'
+        'imagen'
     ];
 
     public function books()

@@ -11,7 +11,6 @@ class PageController extends Controller
 {
     public function HomePage()
     {
-
         $books = Category::first()->books;
         $authors = Author::all();
         $categories = Category::all();
@@ -22,5 +21,12 @@ class PageController extends Controller
     {
         $categories = Category::all();
         return view('Booksto.User.bookPage', compact('book', 'categories'));
+    }
+
+    public function show()
+    {
+        $books = Book::where('category_id', '1')->get();
+        $categories = Category::all();
+        return view('Booksto.User.categoryPage', compact('books', 'categories'));
     }
 }

@@ -24,13 +24,12 @@ class EditorialFactory extends Factory
     {
         $name = $this->faker->sentence(2);
         return [
-            'name' => $name,
-            'address' => $this->faker->streetAddress(),
-            'telephone' => $this->faker->phoneNumber(),
+            'nombre' => $name,
+            'direccion' => $this->faker->streetAddress(),
+            'telefono' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
-            'country' => $this->faker->country(),
-            'slug' => Str::slug($name),
-            'image' => 'editorials/' . $this->faker->image('public/storage/editorials', 640, 480, null, false)
+            'ciudad' => $this->faker->country(),
+            'slug' => Str::slug($name)
         ];
     }
 }

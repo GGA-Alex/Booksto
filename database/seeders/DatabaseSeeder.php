@@ -14,13 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Storage::deleteDirectory('public/categories');
         Storage::deleteDirectory('public/authors');
-        Storage::deleteDirectory('public/editorials');
         Storage::deleteDirectory('public/books');
-        Storage::makeDirectory('public/categories');
         Storage::makeDirectory('public/authors');
-        Storage::makeDirectory('public/editorials');
         Storage::makeDirectory('public/books');
 
         $this->call([
@@ -29,7 +25,8 @@ class DatabaseSeeder extends Seeder
             AuthorSeeder::class,
             EditorialSeeder::class,
             BookSeeder::class,
-            BooksAuthorsSeeder::class
+            BooksAuthorsSeeder::class,
+            StateSeeder::class
         ]);
     }
 }

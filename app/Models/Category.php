@@ -10,9 +10,9 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'slug',
-        'image'
+        'nombre',
+        'descripcion',
+        'slug'
     ];
 
     public function books()

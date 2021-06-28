@@ -32,7 +32,7 @@
                                 </td>
                                 <td class="text-center">
                                     <b>
-                                        {{ $item->price * $item->qty }}
+                                        ${{ $item->price * $item->qty }}
                                     </b>
                                 </td>
                             </tr>

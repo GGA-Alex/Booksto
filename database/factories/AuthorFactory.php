@@ -24,10 +24,10 @@ class AuthorFactory extends Factory
     {
         $name = $this->faker->name($gender = 'male' | 'female');
         return [
-            'name' => $name,
-            'country' => $this->faker->country(),
+            'nombre' => $name,
+            'ciudad' => $this->faker->country(),
             'slug' => Str::slug($name),
-            'image' => 'authors/' . $this->faker->image('public/storage/authors', 640, 480, null, false)
+            'imagen' => 'authors/' . $this->faker->image('public/storage/authors', 640, 480, null, false)
         ];
     }
 }

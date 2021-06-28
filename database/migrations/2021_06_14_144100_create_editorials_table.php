@@ -15,13 +15,12 @@ class CreateEditorialsTable extends Migration
     {
         Schema::create('editorials', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('telephone');
+            $table->string('nombre')->unique();
+            $table->string('direccion')->nullable();
+            $table->string('telefono');
             $table->string('email')->unique();
-            $table->string('country');
+            $table->string('ciudad');
             $table->string('slug');
-            $table->string('image');
             $table->timestamps();
         });
     }

@@ -10,13 +10,13 @@ class Editorial extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'address',
-        'telephone',
+        'nombre',
+        'direccion',
+        'telefono',
         'email',
-        'country',
+        'ciudad',
         'slug',
-        'image'
+        'imagen'
     ];
 
     public function Books()

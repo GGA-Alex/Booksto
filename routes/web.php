@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CreateOrderController;
+use App\Http\Controllers\EditorialController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoppingCartController;
 
@@ -19,10 +22,18 @@ use App\Http\Controllers\ShoppingCartController;
 
 Route::get('/', [PageController::class, 'HomePage'])->name('HomePage');
 
-Route::get('/categorias', [CategoryController::class, 'show'])->name('CategoryPage');
+Route::get('/busqueda', [PageController::class, 'show'])->name('CategoryPage');
 
 Route::get('libro/{book}', [PageController::class, 'BookPage'])->name('books.show');
 
-Route::get('shopping-cart', [ShoppingCartController::class, 'index'])->name('shopping-cart');
+Route::get('carrito', [ShoppingCartController::class, 'index'])->name('shopping-cart');
 
 Route::get('ordenes/crear', [CreateOrderController::class, 'index'])->middleware('auth')->name('ordenes.crear');
+
+Route::resource('libros', BookController::class);
+
+Route::resource('categorias', CategoryController::class);
+
+Route::resource('editoriales', EditorialController::class);
+
+Route::resource('autores', AuthorController::class);

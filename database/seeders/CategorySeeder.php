@@ -17,41 +17,49 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Novedades',
+                'nombre' => 'Novedades',
+                'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'slug' => Str::slug('Novedades'),
             ],
             [
-                'name' => 'Adolescentes',
+                'nombre' => 'Adolescentes',
+                'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'slug' => Str::slug('Adolescentes'),
             ],
             [
-                'name' => 'Niños',
+                'nombre' => 'Niños',
+                'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'slug' => Str::slug('Niños'),
             ],
             [
-                'name' => 'Ciencia Ficcion',
+                'nombre' => 'Ciencia Ficcion',
+                'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'slug' => Str::slug('Ciencia Ficcion'),
             ],
             [
-                'name' => 'Educación',
+                'nombre' => 'Educación',
+                'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'slug' => Str::slug('Educación'),
             ],
             [
-                'name' => 'Ebooks',
+                'nombre' => 'Ebooks',
+                'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'slug' => Str::slug('Ebooks'),
             ],
             [
-                'name' => 'Biografia',
+                'nombre' => 'Biografia',
+                'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'slug' => Str::slug('Biografia'),
             ],
             [
-                'name' => 'Bolsillo',
+                'nombre' => 'Bolsillo',
+                'descripcion' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'slug' => Str::slug('Bolsillo'),
             ],
         ];
 
         foreach ($categories as $category) {
-            Category::factory(1)->create($category);
+            Category::create($category);
         }
     }
 }
