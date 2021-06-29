@@ -115,6 +115,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6"></div>
+                    <a class="btn btn-primary d-block mt-3" href="{{ route('ordenes.payment', $orden) }}">Pagar ahora</a>
                     <div class="col-sm-6 text-right">
                     </div>
                 </div>

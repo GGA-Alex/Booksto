@@ -62,10 +62,6 @@
                             <span>Total de productos</span>
                             <span>{{ Cart::count() }}</span>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <span>Cargos de envio</span>
-                            <span class="text-success">GRATIS</span>
-                        </div>
                         <hr>
                         <div class="d-flex justify-content-between">
                             <span class="text-dark"><strong>Total</strong></span>

@@ -8,6 +8,6 @@ class ShoppingCartController extends Controller
 {
     public function index()
     {
-        return view('Booksto.User.CartDetails');
+        return view('Booksto.User.Shopping cart.CartDetails');
     }
 }

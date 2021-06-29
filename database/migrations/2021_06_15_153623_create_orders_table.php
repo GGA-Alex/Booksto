@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('contact');
             $table->string('phone');
             $table->enum('status', [Order::PENDIENTE, Order::RECIBIDO, Order::ENVIADO, Order::ENTREGADO])->default(Order::PENDIENTE);
-            $table->float('total');
+            $table->string('total');
             $table->json('content');
             $table->string('address');
             $table->string('reference');

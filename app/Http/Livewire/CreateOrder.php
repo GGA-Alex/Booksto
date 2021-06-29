@@ -50,7 +50,7 @@ class CreateOrder extends Component
 
         Cart::destroy();
 
-        return redirect()->route('ordenes.pagar',$order);
+        return redirect()->route('ordenes.checkout',$order);
     }
 
     public function mount(){
