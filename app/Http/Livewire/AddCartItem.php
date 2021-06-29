@@ -21,9 +21,9 @@ class AddCartItem extends Component
         Cart::add(
             [
                 'id' => $this->book->id,
-                'name' => $this->book->name,
+                'name' => $this->book->nombre,
                 'qty' => 1,
-                'price' => $this->book->price,
+                'price' => $this->book->precio,
                 'weight' => 0,
                 'options' => $this->option
             ]

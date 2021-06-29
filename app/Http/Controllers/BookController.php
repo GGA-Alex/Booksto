@@ -56,10 +56,10 @@ class BookController extends Controller
             'category_id' => 'required|integer',
             'editorial_id' => 'required|integer',
             'descripcion' => 'required',
-            'precio' => 'required',
-            'paginas' => 'required|integer',
-            'año' => 'required|integer',
-            'edicion' => 'required|integer',
+            'precio' => 'required|min:0',
+            'paginas' => 'required|integer|min:0',
+            'año' => 'required|integer|min:0',
+            'edicion' => 'required|integer|min:0',
         ]);
 
         $newBook = new Book();
@@ -132,10 +132,15 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
+    public function destroy(Book $libro)
     {
+        
+        foreach($libro->images as $image){
+            Storage::delete([$image->url]);
+            $image->delete();
+        }
         $libro->delete();
-        return redirect()->route('categorias.index');
+        return redirect()->route('libros.index');
     }
 
     public function imagenes(Book $libro, Request $request){

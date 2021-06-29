@@ -19,7 +19,7 @@
                 <div class="d-flex align-items-center">
                     <div class="rounded-circle iq-card-icon bg-primary"><i class="ri-user-line"></i></div>
                     <div class="text-left ml-3">
-                        <h2 class="mb-0"><span class="counter">{{ $users }}</span></h2>
+                        <h2 class="mb-0"><span class="counter">{{ $users->count() }}</span></h2>
                         <h5 class="">Usuarios</h5>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="d-flex align-items-center">
                     <div class="rounded-circle iq-card-icon bg-danger"><i class="ri-book-line"></i></div>
                     <div class="text-left ml-3">
-                        <h2 class="mb-0"><span class="counter">{{ $books }}</span></h2>
+                        <h2 class="mb-0"><span class="counter">{{ $books->count() }}</span></h2>
                         <h5 class="">Libros</h5>
                     </div>
                 </div>
@@ -43,10 +43,10 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
                 <div class="d-flex align-items-center">
-                    <div class="rounded-circle iq-card-icon bg-warning"><i class="ri-shopping-cart-2-line"></i></div>
+                    <div class="rounded-circle iq-card-icon bg-warning"><i class="ri-bookmark-fill"></i></div>
                     <div class="text-left ml-3">
-                        <h2 class="mb-0"><span class="counter">1.2</span>k</h2>
-                        <h5 class="">Sale</h5>
+                        <h2 class="mb-0"><span class="counter">{{ $editorials->count() }}</h2>
+                        <h5 class="">Editoriales</h5>
                     </div>
                 </div>
             </div>

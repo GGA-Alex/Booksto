@@ -8,6 +8,7 @@
     <title>Booksto</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('bookstore/images/favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('bookstore/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bookstore/css/dataTables.bootstrap4.min.css') }}">
@@ -15,18 +16,17 @@
     <link rel="stylesheet" href="{{ asset('bookstore/css/typography.css') }}">
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{ asset('bookstore/css/style.css') }}">
+    <!-- Gilder CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.css"
+        integrity="sha512-YM6sLXVMZqkCspZoZeIPGXrhD9wxlxEF7MzniuvegURqrTGV2xTfqq1v9FJnczH+5OGFl5V78RgHZGaK34ylVg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="{{ asset('bookstore/css/responsive.css') }}">
     @livewireStyles
 </head>
 
 <body class="sidebar-main-active right-column-fixed">
-    <!-- loader Start -->
-    <div id="loading">
-        <div id="loading-center">
-        </div>
-    </div>
-    <!-- loader END -->
+
     <!-- Wrapper Start -->
     <div class="wrapper">
         <!-- Sidebar  -->
@@ -206,6 +206,11 @@
     <script src="{{ asset('bookstorejs/chart-custom.js') }}"></script>
     <!-- Custom JavaScript -->
     <script src="{{ asset('bookstorejs/custom.js') }}"></script>
+    <!-- Gilder -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.js"
+        integrity="sha512-tHimK/KZS+o34ZpPNOvb/bTHZb6ocWFXCtdGqAlWYUcz+BGHbNbHMKvEHUyFxgJhQcEO87yg5YqaJvyQgAEEtA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @stack('script')
 </body>
 
 </html>

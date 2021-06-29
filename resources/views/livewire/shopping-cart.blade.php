@@ -3,42 +3,47 @@
         <div class="col-sm-12">
             <div class="table-responsive-sm">
                 <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Item</th>
-                            <th class="text-center" scope="col">Cantidad</th>
-                            <th class="text-center" scope="col">Precio</th>
-                            <th class="text-center" scope="col">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (Cart::content() as $item)
+                    <table class="table table-striped  text-center" style="width:100%">
+                        <thead>
                             <tr>
-                                <td>
-                                    <h6 class="mb-0">
-                                        {{ $item->name }}
-                                    </h6>
-                                </td>
-                                <td class="row d-flex justify-content-center">
-                                    @livewire('update-cart-item', ['rowId' => $item->rowId],
-                                    key($item->rowId))
-                                </td>
-                                <td class="text-center">
-                                    ${{ $item->price }}
-                                    <a wire:click="delete('{{ $item->rowId }}')"
-                                        wire:target="delete('{{ $item->rowId }}')">
-                                        <i class="las la-trash"></i>
-                                    </a>
-                                </td>
-                                <td class="text-center">
-                                    <b>
-                                        ${{ $item->price * $item->qty }}
-                                    </b>
-                                </td>
+                                <th style="width: 7%;">Imagen</th>
+                                <th style="width: 15%;">Item</th>
+                                <th style="width: 15%;">Cantidad</th>
+                                <th style="width: 15%;">Precio</th>
+                                <th style="width: 18%;">Total</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (Cart::content() as $item)
+                                <tr>
+                                    <td>
+                                        <img class="img-fluid rounded" src="{{ $item->options->image }}" alt="">
+                                    </td>
+                                    <td>
+                                        <h6 class="mb-0">
+                                            {{ $item->name }}
+                                        </h6>
+                                    </td>
+                                    <td class="row d-flex justify-content-center">
+                                        @livewire('update-cart-item', ['rowId' => $item->rowId],
+                                        key($item->rowId))
+                                    </td>
+                                    <td class="text-center">
+                                        ${{ $item->price }}
+                                        <a wire:click="delete('{{ $item->rowId }}')"
+                                            wire:target="delete('{{ $item->rowId }}')">
+                                            <i class="las la-trash"></i>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <b>
+                                            ${{ $item->price * $item->qty }}
+                                        </b>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
             </div>
         </div>
         <div class="col-sm-6">
@@ -58,5 +63,4 @@
             @endif
         </div>
     </div>
-
 </div>

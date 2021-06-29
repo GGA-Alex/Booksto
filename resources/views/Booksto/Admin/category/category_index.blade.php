@@ -1,4 +1,5 @@
-@extends('layouts\Booksto - Layouts\bookstoForm')
+@extends('layouts\Booksto - Layouts\bookstoAdmin')
+
 
 @section('pageName')
     <div class="navbar-breadcrumb">
@@ -42,14 +43,18 @@
                                     <td>{{ $categoria->descripcion }}</td>
                                     <td>
                                         <div class="flex align-items-center list-user-action">
-                                            
-                                            <a href="{{ route('categorias.show', $categoria) }}" class="bg-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detalles">
+
+                                            <a href="{{ route('categorias.show', $categoria) }}" class="bg-primary"
+                                                data-toggle="tooltip" data-placement="top" title=""
+                                                data-original-title="Detalles">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('categorias.edit', $categoria) }}" class="bg-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar">
+                                            <a href="{{ route('categorias.edit', $categoria) }}" class="bg-warning"
+                                                data-toggle="tooltip" data-placement="top" title=""
+                                                data-original-title="Editar">
                                                 <i class="ri-pencil-line"></i>
                                             </a>
-                                            
+
                                         </div>
                                     </td>
                                 </tr>

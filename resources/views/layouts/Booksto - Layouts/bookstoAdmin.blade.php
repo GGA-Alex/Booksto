@@ -56,13 +56,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="admin-category.html">
+                            <a href="{{ route('categorias.index') }}">
                                 <i class="ri-function-line"></i>
                                 <span>Categorias</span>
                             </a>
                         </li>
                         <li>
-                            <a href="admin-category.html">
+                            <a href="{{ route('editoriales.index') }}">
                                 <i class="ri-bookmark-fill"></i>
                                 <span>Editoriales</span>
                             </a>

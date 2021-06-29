@@ -6,8 +6,8 @@
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{route('categorias.index')}}">Listado de Categorias</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{$categoria->nombre}}</li>
+                <li class="breadcrumb-item"><a href="{{ route('categorias.index') }}">Listado de Categorias</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $categoria->nombre }}</li>
             </ul>
         </nav>
     </div>
@@ -16,6 +16,11 @@
 @section('content')
     <div class="col-sm-12">
         <div class="iq-card">
+            <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                    <h4 class="card-title">Detalles de la categoria</h4>
+                </div>
+            </div>
             <div class="iq-card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered text-center" style="width:100%">
@@ -35,11 +40,12 @@
                                 <td>{{ $categoria->descripcion }}</td>
                                 </td>
                                 <td>
-                                    <form action="{{route('categorias.destroy',$categoria)}}" method="POST">
+                                    <form action="{{ route('categorias.destroy', $categoria) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <span class="table-remove">
-                                            <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">Eliminar Categoria</button>
+                                            <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">Eliminar
+                                                Categoria</button>
                                         </span>
                                     </form>
                                 </td>

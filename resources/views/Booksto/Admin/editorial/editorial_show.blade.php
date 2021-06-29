@@ -1,16 +1,16 @@
-@extends('layouts\Booksto - Layouts\bookstoForm')
+@extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
-<div class="navbar-breadcrumb">
-    <h5 class="mb-0">Editoriales</h5>
-    <nav aria-label="breadcrumb">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{route('editoriales.index')}}">Listado de Editoriales</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{$editoriale->nombre}}</li>
-        </ul>
-    </nav>
-</div>
+    <div class="navbar-breadcrumb">
+        <h5 class="mb-0">Editoriales</h5>
+        <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('editoriales.index') }}">Listado de Editoriales</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $editoriale->nombre }}</li>
+            </ul>
+        </nav>
+    </div>
 @endsection
 
 @section('content')
@@ -39,19 +39,20 @@
                                 <td>{{ $editoriale->telefono }}</td>
                                 <td>{{ $editoriale->email }}</td>
                                 <td>
-                                    <form action="{{route('editoriales.destroy',$editoriale)}}" method="POST">
+                                    <form action="{{ route('editoriales.destroy', $editoriale) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <span class="table-remove">
-                                            <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">Eliminar editorial</button>
+                                            <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">Eliminar
+                                                editorial</button>
                                         </span>
                                     </form>
                                 </td>
-                                </tr>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-            </>
+                </>
+            </div>
         </div>
-    </div>
-@endsection
+    @endsection

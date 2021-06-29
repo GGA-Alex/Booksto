@@ -23,7 +23,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'HomePage'])->name('HomePage');
 
-Route::get('/busqueda', [PageController::class, 'show'])->name('CategoryPage');
+Route::get('/categoria', [PageController::class, 'show'])->name('CategoryPage');
+
+Route::get('/categoria/{categoria}', [PageController::class, 'showCategory'])->name('categoria.show');
 
 Route::get('libro/{book}', [PageController::class, 'BookPage'])->name('books.show');
 

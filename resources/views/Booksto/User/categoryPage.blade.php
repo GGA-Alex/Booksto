@@ -16,87 +16,66 @@
     <div class="col-lg-12">
         <div class="iq-card-transparent mb-0">
             <div class="d-block text-center">
-                <h2 class="mb-3">¿Que libro buscas?</h2>
-                <div class="w-100 iq-search-filter">
-                    <ul class="list-inline p-0 m-0 row justify-content-center search-menu-options">
-                        <li class="search-menu-opt">
-                            <div class="iq-dropdown">
-                                <div class="form-group mb-0">
-                                    <select class="form-control form-search-control bg-white border-0"
-                                        id="exampleFormControlSelect1">
-                                        <option selected="">Selecciona una categoría</option>
-                                        @foreach ($categories as $category)
-                                            <option id="{{ $category->name }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="search-menu-opt">
-                            <div class="iq-search-bar search-book d-flex align-items-center">
-                                <form action="#" class="searchbox">
-                                    <input type="text" class="text search-input" placeholder="buscar...">
-                                    <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-                                </form>
-                                <button type="submit" class="btn btn-primary search-data ml-2">Buscar libro</button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                <h2 class="mb-3">Busca tu libro favorito</h2>
             </div>
         </div>
-        <div class="iq-card">
-            <div class="iq-card-body">
-                <div class="row">
-                    @foreach ($categories->first()->books as $book)
-                        <div class="col-sm-6 col-md-4 col-lg-3">
-                            <div class="iq-card iq-card-block iq-card-stretch iq-card-height browse-bookcontent">
-                                <div class="iq-card-body p-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="col-6 p-0 position-relative image-overlap-shadow">
-                                            <a href="javascript:void();">
-                                                <img class="img-fluid rounded w-100"
-                                                    src="{{ Storage::url($book->images->first()->url) }}" alt="">
-                                            </a>
-                                            <div class="view-book">
-                                                <a href="{{ route('books.show', $book) }}"
-                                                    class="btn btn-sm btn-white">Ver
-                                                    detalles</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mb-2">
-                                                <h6 class="mb-1">{{ $book->name }}</h6>
-                                                @foreach ($book->authors as $author)
-                                                    <p class="font-size-13 line-height mb-1">
-                                                        {{ $author->name }}
-                                                    </p>
-                                                @endforeach
-                                                <div class="d-block line-height">
-                                                    <span class="font-size-11 text-warning">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="price d-flex align-items-center">
-                                                <h6><b>${{ $book->price }}</b></h6>
-                                            </div>
-                                            <div class="iq-product-action">
-                                                <a href="javascript:void();"><i
-                                                        class="ri-shopping-cart-2-fill text-primary"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+        <section>
+            @foreach ($categories as $category)
+                <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center mb-2">
+                        <h1 class="text-lg uppercase font-semibold">{{ $category->nombre }}</h1>
+                        <a class="ml-2 font-semibold hover:underline" href="{{ route('categoria.show', $category) }}">Ver
+                            mas...</a>
+                    </div>
+                    @livewire('category-books', ['category' => $category])
                 </div>
-            </div>
-        </div>
+            @endforeach
+        </section>
+
+        @push('script')
+            <script>
+                Livewire.on('glider', function(id) {
+                    new Glider(document.querySelector('.glider-' + id), {
+                        slidesToScroll: 1,
+                        slidesToShow: 1,
+                        draggable: true,
+                        dots: '.glider-' + id + '~ .dots',
+                        arrows: {
+                            prev: '.glider-' + id + '~ .glider-prev',
+                            next: '.glider-' + id + '~ .glider-next'
+                        },
+                        responsive: [{
+                                breakpoint: 640,
+                                settings: {
+                                    slidesToScroll: 2.5,
+                                    slidesToShow: 2,
+                                }
+                            },
+                            {
+                                breakpoint: 768,
+                                settings: {
+                                    slidesToScroll: 3.5,
+                                    slidesToShow: 3,
+                                }
+                            },
+                            {
+                                breakpoint: 1024,
+                                settings: {
+                                    slidesToScroll: 4.5,
+                                    slidesToShow: 4,
+                                }
+                            },
+                            {
+                                breakpoint: 1280,
+                                settings: {
+                                    slidesToScroll: 5.5,
+                                    slidesToShow: 5,
+                                }
+                            }
+                        ]
+                    });
+                });
+            </script>
+        @endpush
     </div>
 @endsection

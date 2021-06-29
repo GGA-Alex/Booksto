@@ -18,15 +18,12 @@
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
                 <div class="iq-header-title">
-                    <h4 class="card-title">Lista de libros</h4>
-                </div>
-                <div class="iq-card-header-toolbar d-flex align-items-center">
-                    <a href="admin-add-book.html" class="btn btn-primary">Agrgegar nuevo libro</a>
+                    <h4 class="card-title">Detalles del libro</h4>
                 </div>
             </div>
             <div class="iq-card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered" style="width:100%">
+                    <table class="table table-striped table-bordered text-center" style="width:100%">
                         <thead>
                             <tr>
                                 <th style="width: 3%;">Id</th>
