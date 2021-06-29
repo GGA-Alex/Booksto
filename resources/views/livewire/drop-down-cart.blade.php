@@ -1,5 +1,6 @@
 <div>
     <ul class="navbar-nav ml-auto navbar-list">
+
         <li class="nav-item nav-icon dropdown">
             <a href="#" class="search-toggle iq-waves-effect text-gray rounded">
                 <i class="ri-shopping-cart-2-line"></i>

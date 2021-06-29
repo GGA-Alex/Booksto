@@ -128,6 +128,7 @@
                         </div>
                     </div>
                     @yield('pageName')
+                    @livewire('search')
                     @livewire('drop-down-cart')
                 </nav>
             </div>
@@ -206,10 +207,12 @@
     <script src="{{ asset('bookstorejs/chart-custom.js') }}"></script>
     <!-- Custom JavaScript -->
     <script src="{{ asset('bookstorejs/custom.js') }}"></script>
-    <!-- Gilder -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.js"
         integrity="sha512-tHimK/KZS+o34ZpPNOvb/bTHZb6ocWFXCtdGqAlWYUcz+BGHbNbHMKvEHUyFxgJhQcEO87yg5YqaJvyQgAEEtA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Alpine -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     @stack('script')
 </body>
 
