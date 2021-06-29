@@ -27,10 +27,15 @@ class EditBook extends Component
         'libro.edicion' => 'required|integer',
     ];
     
+    protected $listeners=['refreshBook'];
 
     public function mount(){
         $this->categories = Category::all();
         $this->editorials = Editorial::all();
+    }
+
+    public function refreshBook(){
+        $this->libro = $this->libro->fresh();
     }
 
     public function deleteImage(Image $image){
