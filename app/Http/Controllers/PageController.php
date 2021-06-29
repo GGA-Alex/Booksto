@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Order;
 
 class PageController extends Controller
 {
@@ -14,7 +15,8 @@ class PageController extends Controller
         $books = Category::first()->books->where('status','1');
         $authors = Author::all();
         $categories = Category::all();
-        return view('Booksto.User.index', compact('books', 'authors', 'categories'));
+        $pendiente = Order::where('status','1')->where('user_id',auth()->user()->id)->count();
+        return view('Booksto.User.index', compact('books', 'authors', 'categories','pendiente'));
     }
 
     public function BookPage(Book $book)

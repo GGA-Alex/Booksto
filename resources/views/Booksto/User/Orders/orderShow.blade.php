@@ -6,7 +6,8 @@
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('HomePage') }}">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Pago de pedido</li>
+                <li class="breadcrumb-item"><a href="{{ route('ordenes.index') }}">Mis pedidos</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Pedido</li>
             </ul>
         </nav>
     </div>
@@ -139,7 +140,6 @@
                     @if ($orden->status == '1')
                         <a class="btn btn-primary d-block mt-3" href="{{ route('ordenes.payment', $orden) }}">Pagar
                             ahora</a>
-                    @else
                     @endif
                     <div class="col-sm-6 text-right">
                     </div>

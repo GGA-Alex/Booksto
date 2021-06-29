@@ -50,36 +50,25 @@
                 <nav class="iq-sidebar-menu">
                     <ul id="iq-sidebar-toggle" class="iq-menu">
                         <li>
-                            <a href="{{ route('admin.index') }}">
+                        <li>
+                            <a href="{{ route('HomePage') }}">
                                 <i class="las la-home"></i>
-                                <span>Dashboard</span>
+                                <span>Inicio</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('categorias.index') }}">
+                            <a href="{{ route('CategoryPage') }}">
                                 <i class="ri-function-line"></i>
                                 <span>Categorias</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('editoriales.index') }}">
-                                <i class="ri-bookmark-fill"></i>
-                                <span>Editoriales</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="admin-author.html">
-                                <i class="ri-file-user-line"></i>
-                                <span>Autores</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('libros.index') }}">
-                                <i class="ri-book-2-line"></i>
-                                <span>Libros</span>
-                            </a>
-                        </li>
                         @auth
+                            <li>
+                                <a href="{{ route('admin.index') }}">
+                                    <i class="ri-admin-line"></i>
+                                    <span>Administrador</span>
+                                </a>
+                            </li>
                             <li>
                                 <a href="#userinfo" class="iq-waves-effect" data-toggle="collapse" aria-expanded="false">
                                     <span class="ripple rippleEffect"></span>
@@ -88,6 +77,12 @@
                                     <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                                 </a>
                                 <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle" style="">
+                                    <li>
+                                        <a href="{{ route('ordenes.index') }}">
+                                            <i class="las la-truck"></i>
+                                            Mis ordenes
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('profile.show') }}">
                                             <i class="las la-id-card-alt"></i>
@@ -99,7 +94,8 @@
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); this.closest('form').submit();">
-                                                <i class="las la-sign-out-alt"></i> Cerrar sesión
+                                                <i class="las la-sign-out-alt"></i>
+                                                Cerrar sesión
                                             </a>
                                         </li>
 
@@ -107,6 +103,20 @@
                                 </ul>
                             </li>
                         @endauth
+                        @guest
+                            <li>
+                                <a href="#userinfo" class="iq-waves-effect" data-toggle="collapse"
+                                    aria-expanded="false"><span class="ripple rippleEffect"></span><i
+                                        class="las la-user-tie iq-arrow-left"></i><span>Usuario</span><i
+                                        class="ri-arrow-right-s-line iq-arrow-right"></i></a>
+                                <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle" style="">
+                                    <li><a href="{{ route('login') }}"><i class="las la-sign-in-alt"></i><span>Iniciar
+                                                sesión</span></a></li>
+                                    <li><a href="{{ route('register') }}"><i
+                                                class="ri-login-circle-line"></i><span>Registrarse</span></a></li>
+                                </ul>
+                            </li>
+                        @endguest
                     </ul>
                 </nav>
             </div>

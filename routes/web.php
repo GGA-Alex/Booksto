@@ -25,19 +25,22 @@ Route::get('libro/{book}', [PageController::class, 'BookPage'])->name('books.sho
 
 Route::get('carrito', [ShoppingCartController::class, 'index'])->name('shopping-cart');
 
-//Rutas ordenes
+//Rutas creacion de ordenes
 
-Route::get('ordenes/crear', [CreateOrderController::class, 'index'])->middleware('auth')->name('ordenes.crear');
+Route::middleware(['auth'])->group(Function(){
 
-Route::get('ordenes/{orden}', [CreateOrderController::class, 'show'])->middleware('auth')->name('ordenes.show');
+    Route::get('ordenes', [CreateOrderController::class, 'index'])->name('ordenes.index');
+    
+    Route::get('ordenes/crear', [CreateOrderController::class, 'create'])->name('ordenes.crear');
 
-Route::get('ordenes/{orden}/checkout', [CreateOrderController::class, 'checkout'])->middleware('auth')->name('ordenes.checkout');
+    Route::get('ordenes/{orden}', [CreateOrderController::class, 'show'])->name('ordenes.show');
+    
+    Route::get('ordenes/{orden}/pagar', [CreateOrderController::class, 'payment'])->name('ordenes.payment');
+    
+    Route::get('ordenes/{orden}/pago-aprovado', [CreateOrderController::class, 'approved'])->name('ordenes.approved');
 
-Route::get('ordenes/{orden}/pagar', [CreateOrderController::class, 'payment'])->middleware('auth')->name('ordenes.payment');
-
-Route::get('ordenes/{orden}/pago-aprovado', [CreateOrderController::class, 'approved'])->middleware('auth')->name('ordenes.approved');
-
-
+    Route::get('/pago-aprovado/status/{orden}', [CreateOrderController::class, 'status'])->name('ordenes.status');
+});
 
 // Rutas administrador
 

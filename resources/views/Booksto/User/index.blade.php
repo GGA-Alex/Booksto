@@ -12,7 +12,22 @@
     </div>
 @endsection
 
+@section('banner')
+
+@endsection
+
 @section('content')
+    @if ($pendiente)
+        <div class="alert text-white bg-danger w-full" role="alert">
+            <div class="iq-alert-icon">
+                <i class="ri-alert-line"></i>
+            </div>
+            <div class="iq-alert-text">Tiene <b>{{ $pendiente }} orden(es) pendiente sin pagar!</b></div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
     <div class="col-lg-12">
         <div class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height rounded">
             <div class="newrealease-contens">

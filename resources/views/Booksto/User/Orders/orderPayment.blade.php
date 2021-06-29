@@ -45,9 +45,35 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <span class="badge badge-danger">
-                                                Pendiente de pago
-                                            </span>
+                                            @switch($orden->status)
+                                                @case(1)
+                                                    <span class="badge badge-danger">
+                                                        Pendiente de pago
+                                                    </span>
+                                                @break
+                                                @case(2)
+                                                    <span class="badge badge-primary">
+                                                        Pago recibido
+                                                    </span>
+                                                @break
+                                                @case(3)
+                                                    <span class="badge badge-warning">
+                                                        Pedido enviado
+                                                    </span>
+                                                @break
+                                                @case(4)
+                                                    <span class="badge badge-primary">
+                                                        Pedido entregado
+                                                    </span>
+                                                @break
+                                                @case(5)
+                                                    <span class="badge badge-dark">
+                                                        Pedido anulado
+                                                    </span>
+                                                @break
+                                                @default
+
+                                            @endswitch
                                         </td>
                                         <td>{{ $orden->id }}</td>
 
@@ -115,7 +141,10 @@
                         </div>
                     </div>
                     <div class="col-sm-6"></div>
-                    <a class="btn btn-primary d-block mt-3" href="{{ route('ordenes.payment', $orden) }}">Pagar ahora</a>
+                    @if ($orden->status == '1')
+                        <a class="btn btn-primary d-block mt-3" href="{{ route('ordenes.payment', $orden) }}">Pagar
+                            ahora</a>
+                    @endif
                     <div class="col-sm-6 text-right">
                     </div>
                 </div>

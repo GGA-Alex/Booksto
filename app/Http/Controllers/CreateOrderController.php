@@ -4,27 +4,45 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-
 use App\Models\Order;
 
 class CreateOrderController extends Controller
 {
     
-
     public function index()
+    {
+        $orders = Order::query()->where('user_id',auth()->user()->id);
+
+        if(request('status')){
+            $orders->where('status',request('status'));
+        }
+
+        $orders = $orders->get();
+        
+        $pendiente = Order::where('status',1)->where('user_id',auth()->user()->id)->count();
+        $recibido = Order::where('status',2)->where('user_id',auth()->user()->id)->count();
+        $enviado = Order::where('status',3)->where('user_id',auth()->user()->id)->count();
+        $entregado = Order::where('status',4)->where('user_id',auth()->user()->id)->count();
+        $anulado = Order::where('status',5)->where('user_id',auth()->user()->id)->count();
+
+        return view('Booksto.User.Orders.orderIndex',compact('orders','pendiente','recibido','enviado','entregado','anulado'));
+    }
+
+    public function create()
     {
         return view('Booksto.User.Orders.order');
     }
 
-    public function checkout(Order $orden)
-    {
+    public function show(Order $orden){
+        $this->authorize('author',$orden);
         $items = json_decode($orden->content);
-
-        return view('Booksto.User.Orders.orderPayment',compact('orden','items'));
+        return view('Booksto.User.Orders.orderShow',compact('orden','items'));
     }
 
     public function payment(Order $orden)
     {
+        $this->authorize('payment',$orden);
+
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
                 config('services.paypal.client_id'),     // ClientID
@@ -44,7 +62,7 @@ class CreateOrderController extends Controller
 
         $redirectUrls = new \PayPal\Api\RedirectUrls();
         $redirectUrls->setReturnUrl(route('ordenes.approved',$orden))
-            ->setCancelUrl(route('ordenes.checkout',$orden));
+            ->setCancelUrl(route('ordenes.show',$orden));
 
         $payment = new \PayPal\Api\Payment();
         $payment->setIntent('sale')
@@ -79,13 +97,12 @@ class CreateOrderController extends Controller
         $result = $payment->execute($execution, $apiContext);
 
         
-        return redirect()->route('ordenes.show',$orden);
+        return redirect()->route('ordenes.status',$orden);
     }
 
-    public function show(Order $orden){
+    public function status(Order $orden){
         $orden->status = 2;
         $orden->save();
-        $items = json_decode($orden->content);
-        return view('Booksto.User.Orders.orderShow',compact('orden','items'));
+        return redirect()->route('ordenes.show',$orden);
     }
 }

@@ -32,8 +32,11 @@
         </div>
     </div>
     <!-- loader END -->
+    @yield('banner')
     <!-- Wrapper Start -->
     <div class="wrapper">
+
+
         <!-- Sidebar  -->
         <div class="iq-sidebar">
             <div class="iq-sidebar-logo d-flex justify-content-between">
@@ -82,14 +85,25 @@
                                     <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                                 </a>
                                 <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle" style="">
-                                    <li><a href="{{ route('profile.show') }}"><i class="las la-id-card-alt"></i>Perfil de
-                                            usuario</a></li>
+                                    <li>
+                                        <a href="{{ route('ordenes.index') }}">
+                                            <i class="las la-truck"></i>
+                                            Mis ordenes
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('profile.show') }}">
+                                            <i class="las la-id-card-alt"></i>
+                                            Perfil de usuario
+                                        </a>
+                                    </li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); this.closest('form').submit();">
-                                                <i class="las la-sign-out-alt"></i> Cerrar sesión
+                                                <i class="las la-sign-out-alt"></i>
+                                                Cerrar sesión
                                             </a>
                                         </li>
 

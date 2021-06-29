@@ -15,31 +15,34 @@
                                 <small class="badge  badge-light float-right pt-1">{{ Cart::count() }}</small>
                             </h5>
                         </div>
-                        @forelse (Cart::content() as $item)
-                            <a class="iq-sub-card">
-                                <div class="media align-items-center border-bottom pb-2">
-                                    <div class="">
-                                        <img class="rounded" src="{{ $item->options->image }}" alt="">
-                                    </div>
-                                    <div class="media-body ml-3">
-                                        <h6 class="mb-0 ">{{ $item->name }}</h6>
-                                        <p class="mb-0">Cantidad: {{ $item->qty }}</p>
-                                        <p class="mb-0">$ {{ $item->price }}</p>
+                        @if (Cart::count() > 5)
+                        @else
+                            @forelse (Cart::content() as $item)
+                                <a class="iq-sub-card">
+                                    <div class="media align-items-center border-bottom pb-2">
+                                        <div class="">
+                                            <img class="rounded" src="{{ $item->options->image }}" alt="">
+                                        </div>
+                                        <div class="media-body ml-3">
+                                            <h6 class="mb-0 ">{{ $item->name }}</h6>
+                                            <p class="mb-0">Cantidad: {{ $item->qty }}</p>
+                                            <p class="mb-0">$ {{ $item->price }}</p>
 
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        @empty
-                            <a class="iq-sub-card">
-                                <div class="media align-items-center">
-                                    <h6 class="m-2 ">Vacio..</h6>
-                                </div>
-                            </a>
+                                </a>
+                            @empty
+                                <a class="iq-sub-card">
+                                    <div class="media align-items-center">
+                                        <h6 class="m-2 ">Vacio..</h6>
+                                    </div>
+                                </a>
 
-                        @endforelse
+                            @endforelse
+                        @endif
 
                         @if (Cart::count())
-                            <div class="d-flex align-items-center text-center p-3">
+                            <div class="align-items-center text-center p-3">
                                 <p class="mb-0 ">Total: {{ Cart::subtotal() }}</p>
                             </div>
                             <div class="d-flex align-items-center text-center p-3">
