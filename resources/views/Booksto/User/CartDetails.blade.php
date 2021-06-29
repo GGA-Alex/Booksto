@@ -13,5 +13,5 @@
 @endsection
 
 @section('content')
-    @livewire('shopping-cart')}
+    @livewire('shopping-cart')
 @endsection

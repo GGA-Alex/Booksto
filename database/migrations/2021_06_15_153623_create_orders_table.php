@@ -21,14 +21,14 @@ class CreateOrdersTable extends Migration
             $table->string('contact');
             $table->string('phone');
             $table->enum('status', [Order::PENDIENTE, Order::RECIBIDO, Order::ENVIADO, Order::ENTREGADO])->default(Order::PENDIENTE);
-            $table->float('shipping_cost');
             $table->float('total');
             $table->json('content');
+            $table->string('address');
+            $table->string('reference');
             $table->unsignedBigInteger('state_id');
             $table->foreign('state_id')->references('id')->on('states');
             $table->unsignedBigInteger('municipality_id');
             $table->foreign('municipality_id')->references('id')->on('municipalities');
-            $table->string('address');
             $table->timestamps();
         });
     }

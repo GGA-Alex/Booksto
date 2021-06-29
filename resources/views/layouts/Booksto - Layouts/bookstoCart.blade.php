@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="{{ asset('bookstore/images/favicon.ico') }}" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('bookstore/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <!-- Typography CSS -->
     <link rel="stylesheet" href="{{ asset('bookstore/css/typography.css') }}">
     <!-- Style CSS -->
@@ -125,25 +126,16 @@
 
         <!-- Page Content  -->
         <div id="content-page" class="content-page">
-            <div class="container-fluid">
+            <div class="container-fluid checkout-content">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="iq-card">
-                            <div class="iq-card-body">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <img src="{{ asset('bookstore/images/logo.png') }}"
-                                            class="img-fluid avatar-100" alt="">
-                                    </div>
-                                </div>
-                                @yield('content')
-                            </div>
-                        </div>
+                    <div id="cart" class="card-block show p-0 col-12">
+                        @yield('content')
                     </div>
                 </div>
             </div>
         </div>
-        @livewireScripts
+    </div>
+    @livewireScripts
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

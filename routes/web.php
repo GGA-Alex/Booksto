@@ -17,15 +17,17 @@ Route::get('/', [PageController::class, 'HomePage'])->name('HomePage');
 
 Route::get('search',SearchController::class)->name('search');
 
-Route::get('/categorias', [PageController::class, 'show'])->name('CategoryPage');
+Route::get('categorias', [PageController::class, 'show'])->name('CategoryPage');
 
-Route::get('/categoria/{categoria}', [PageController::class, 'showCategory'])->name('categoria.show');
+Route::get('categoria/{categoria}', [PageController::class, 'showCategory'])->name('categoria.show');
 
 Route::get('libro/{book}', [PageController::class, 'BookPage'])->name('books.show');
 
 Route::get('carrito', [ShoppingCartController::class, 'index'])->name('shopping-cart');
 
 Route::get('ordenes/crear', [CreateOrderController::class, 'index'])->middleware('auth')->name('ordenes.crear');
+
+Route::get('ordenes/{orden}/pagar', [CreateOrderController::class, 'payment'])->middleware('auth')->name('ordenes.pagar');
 
 
 
