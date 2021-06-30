@@ -69,7 +69,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <span class="table-remove">
-                                                    <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">
+                                                    <button type="submit" class="btn bg-danger btn-rounded btn-sm my-0">
                                                         Eliminar Autor
                                                     </button>
                                                 </span>

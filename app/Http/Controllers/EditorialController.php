@@ -21,7 +21,7 @@ class EditorialController extends Controller
         if (!Gate::allows('admin')) {
             abort(403);
         }
-        $editoriales = Editorial::with('books')->get();
+        $editoriales = Editorial::all();
         return view('Booksto.Admin.editorial.editorial_index', compact('editoriales'));
     }
 

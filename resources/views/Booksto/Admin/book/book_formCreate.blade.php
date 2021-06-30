@@ -89,21 +89,4 @@
             </div>
         </div>
     </div>
-
-    @push('script')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"
-                integrity="sha512-VQQXLthlZQO00P+uEu4mJ4G4OAgqTtKG1hri56kQY1DtdLeIqhKUp9W/lllDDu3uN3SnUNawpW7lBda8+dSi7w=="
-                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-            Dropzone.options.myAwesomeDropzone = {
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                dictDefaultMessage: "Arrastre una imagen al recuadro",
-                acceptedFiles: "image/*",
-                paramName: "file", // The name that will be used to transfer the file
-                maxFilesize: 2, // MB
-            };
-        </script>
-    @endpush
 @endsection

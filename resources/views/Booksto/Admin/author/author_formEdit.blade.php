@@ -1,13 +1,14 @@
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
     <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Libros</h5>
+        <h5 class="mb-0">Autores</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('libros.index') }}">Libros</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Editar Libro</li>
+                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('autores.index') }}">Autores</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Formulario</li>
             </ul>
         </nav>
     </div>
@@ -26,11 +27,11 @@
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
                 <div class="iq-header-title">
-                    <h4 class="card-title">Agregar Libro</h4>
+                    <h4 class="card-title">Editar autor</h4>
                 </div>
             </div>
             <div class="iq-card-body">
-                @livewire('edit-book',['libro'=>$libro])
+                @livewire('author-form',['autore'=>$autore])
             </div>
         </div>
     </div>
@@ -52,10 +53,9 @@
                     this.removeFile(file);
                 },
                 queuecomplete: function() {
-                    Livewire.emit('refreshBook');
+                    Livewire.emit('refreshAutor');
                 }
             };
         </script>
     @endpush
-
 @endsection

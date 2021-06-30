@@ -8,6 +8,8 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class AuthorController extends Controller
 {
@@ -21,7 +23,6 @@ class AuthorController extends Controller
         if (!Gate::allows('admin')) {
             abort(403);
         }
-        session()->flash('flash.banner','Esto es un mensaje flash');
         $authors = Author::with('images:imageable_id,imageable_type,url','books')->get();
         return view('Booksto.Admin.author.author_index', compact('authors'));
     }
@@ -61,7 +62,7 @@ class AuthorController extends Controller
 
         $newAuthor->save();
 
-        return redirect()->route('autores.index')->with('create','Autor agregado con exito');
+        return redirect()->route('autores.edit',$newAuthor)->with('create','Autor agregado con exito');
     }
 
     /**
@@ -81,9 +82,9 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function edit(Author $author)
+    public function edit(Author $autore)
     {
-        return view('Booksto.Admin.author.author_form');
+        return view('Booksto.Admin.author.author_formEdit',compact('autore'));
     }
 
     /**
@@ -93,9 +94,16 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(Request $request, Author $autore)
     {
-        //
+        $request->validate([
+            'nombre' => ['required','string','min:10',Rule::unique('authors')->ignore($autore->id)],
+            'pais' => 'required|string|min:5',
+        ]);
+
+        Author::where('id',$autore->id)->update($request->except('_token','_method'));
+        
+        return redirect()->route('autores.index')->with('update','Autor actualizado con exito.');
     }
 
     /**
@@ -116,5 +124,18 @@ class AuthorController extends Controller
 
     public function libros(Author $autor){
         return view('Booksto.Admin.author.author_books',compact('autor'));
+    }
+
+    public function imagenes(Author $autor, Request $request){
+        
+        $request->validate([
+            'file' => 'required|image|max:2048'
+        ]);
+
+        $url = Storage::put('public/images', $request->file('file'));
+        
+        $autor->images()->create([
+            'url' => $url
+        ]);
     }
 }

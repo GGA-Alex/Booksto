@@ -53,27 +53,27 @@ Route::middleware(['auth'])->group(Function(){
 
 Route::middleware(['auth','web'])->group(function () {
 
-    Route::redirect('/admin','/admin/dashboard');
+    Route::redirect('admin','admin/dashboard');
 
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
 
-    Route::resource('/admin/categorias', CategoryController::class);
+    Route::resource('admin/categorias', CategoryController::class);
 
     Route::get('admins/categorias/{categoria}/libros', [CategoryController::class, 'libros'])->name('categorias.libros');
 
-    Route::resource('/admin/editoriales', EditorialController::class);
+    Route::resource('admin/editoriales', EditorialController::class);
 
     Route::get('admins/editoriales/{editorial}/libros', [EditorialController::class, 'libros'])->name('editoriales.libros');
 
-    Route::resource('/admin/autores', AuthorController::class);
+    Route::resource('admin/autores', AuthorController::class);
 
-    Route::get('/admin/autores/{autor}/libros', [AuthorController::class,'libros'])->name('autores.libros');
+    Route::get('admin/autores/{autor}/libros', [AuthorController::class,'libros'])->name('autores.libros');
 
-    Route::post('admins/autores/{autor}/imagenes', [AuthorController::class, 'imagenes'])->name('admin.libros.imagenes');
+    Route::post('admin/autores/{autor}/imagenes', [AuthorController::class, 'imagenes'])->name('admin.autores.imagenes');
 
     Route::resource('/admin/libros', BookController::class);
 
-    Route::post('admins/libros/{libro}/imagenes', [BookController::class, 'imagenes'])->name('admin.libros.imagenes');
+    Route::post('admin/libros/{libro}/imagenes', [BookController::class, 'imagenes'])->name('admin.libros.imagenes');
     
     
 

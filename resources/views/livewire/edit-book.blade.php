@@ -12,7 +12,7 @@
         </ul>
     @endif
     <form action="{{ route('admin.libros.imagenes', $libro) }}" method="POST" class="dropzone"
-        id="my-awesome-dropzone">
+        id="my-awesome-dropzone" wire:ignore>
     </form>
     @if ($libro->images->count())
         <div class="iq-card">

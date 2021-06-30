@@ -22,6 +22,14 @@
             </button>
         </div>
     @endif
+    @if (session('update'))
+        <div class="alert text-white bg-warning w-full" role="alert">
+            <div class="iq-alert-text">{{ session('update') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
     @if (session('delete'))
         <div class="alert text-white bg-danger w-full" role="alert">
             <div class="iq-alert-text">{{ session('delete') }}</div>

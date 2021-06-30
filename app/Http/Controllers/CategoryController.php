@@ -20,7 +20,7 @@ class CategoryController extends Controller
         if (!Gate::allows('admin')) {
             abort(403);
         }
-        $categorias = Category::with('books')->get();
+        $categorias = Category::all();
         return view('Booksto.Admin.category.category_index', compact('categorias'));
     }
 

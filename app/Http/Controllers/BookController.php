@@ -148,7 +148,7 @@ class BookController extends Controller
             'file' => 'required|image|max:2048'
         ]);
 
-        $url = Storage::put('public/books', $request->file('file'));
+        $url = Storage::put('public/images', $request->file('file'));
         
         $libro->images()->create([
             'url' => $url
