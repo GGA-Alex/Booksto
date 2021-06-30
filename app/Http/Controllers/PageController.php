@@ -12,10 +12,13 @@ class PageController extends Controller
 {
     public function HomePage()
     {
+        if(auth()->user()){
+            $pendiente = Order::where('status','1')->where('user_id',auth()->user()->id)->count();
+        }
+        $pendiente = 0;
         $books = Category::first()->books->where('status','1');
         $authors = Author::all();
         $categories = Category::all();
-        $pendiente = Order::where('status','1')->where('user_id',auth()->user()->id)->count();
         return view('Booksto.User.index', compact('books', 'authors', 'categories','pendiente'));
     }
 

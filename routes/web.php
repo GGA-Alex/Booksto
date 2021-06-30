@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SearchController;
 
 
+
 Route::get('/', [PageController::class, 'HomePage'])->name('HomePage');
 
 Route::get('search',SearchController::class)->name('search');
