@@ -22,7 +22,8 @@
             <div class="iq-alert-icon">
                 <i class="ri-alert-line"></i>
             </div>
-            <div class="iq-alert-text">Tiene <b>{{ $pendiente }} orden(es) pendiente sin pagar!</b></div>
+            <div class="iq-alert-text">Tiene <b>{{ $pendiente }}</b> orden(es) con status <b>Pendiente.</b>
+            </div>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <i class="ri-close-line"></i>
             </button>

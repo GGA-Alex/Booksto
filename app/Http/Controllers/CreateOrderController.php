@@ -82,6 +82,7 @@ class CreateOrderController extends Controller
     }
 
     public function approved(Request $request, Order $orden){
+        $this->authorize('payment',$orden);
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
                 config('services.paypal.client_id'),     // ClientID
@@ -101,6 +102,7 @@ class CreateOrderController extends Controller
     }
 
     public function status(Order $orden){
+        $this->authorize('payment',$orden);
         $orden->status = 2;
         $orden->save();
         return redirect()->route('ordenes.show',$orden);

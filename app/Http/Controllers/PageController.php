@@ -14,8 +14,9 @@ class PageController extends Controller
     {
         if(auth()->user()){
             $pendiente = Order::where('status','1')->where('user_id',auth()->user()->id)->count();
+        }else{
+            $pendiente = 0;
         }
-        $pendiente = 0;
         $books = Category::first()->books->where('status','1');
         $authors = Author::all();
         $categories = Category::all();

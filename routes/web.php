@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(Function(){
     
     Route::get('ordenes/{orden}/pago-aprovado', [CreateOrderController::class, 'approved'])->name('ordenes.approved');
 
-    Route::get('/pago-aprovado/status/{orden}', [CreateOrderController::class, 'status'])->name('ordenes.status');
+    Route::get('pago-aprovado/status/{orden}', [CreateOrderController::class, 'status'])->name('ordenes.status');
 });
 
 // Rutas administrador
