@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Image;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Gate;
@@ -20,7 +21,8 @@ class AuthorController extends Controller
         if (!Gate::allows('admin')) {
             abort(403);
         }
-        $authors = Author::get();
+        session()->flash('flash.banner','Esto es un mensaje flash');
+        $authors = Author::with('images:imageable_id,imageable_type,url','books')->get();
         return view('Booksto.Admin.author.author_index', compact('authors'));
     }
 
@@ -45,22 +47,21 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+        
+
+        $request->validate([
+            'nombre' => 'required|string|min:10|unique:authors',
+            'pais' => 'required|string|min:5',
+        ]);
+
         $newAuthor = new Author();
-
-        $filenameWithExt = $request->file('image')->getClientOriginalName();
-        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        $extension = $request->file('image')->getClientOriginalExtension();
-        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-        $path = $request->file('image')->storeAs('public/authors', $fileNameToStore);
-
-        $newAuthor->name = $request->name;
-        $newAuthor->country = $request->country;
-        $newAuthor->slug = Str::slug($request->name);
-        $newAuthor->image = 'authors/' . $fileNameToStore;
+        $newAuthor->nombre = $request->nombre;
+        $newAuthor->pais = $request->pais;
+        $newAuthor->slug = Str::slug($request->nombre);
 
         $newAuthor->save();
 
-        return redirect()->route('autores.index');
+        return redirect()->route('autores.index')->with('create','Autor agregado con exito');
     }
 
     /**
@@ -69,9 +70,9 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function show(Author $author)
+    public function show(Author $autore)
     {
-        return view('Booksto.Admin.author.author_show',compact('author'));
+        return view('Booksto.Admin.author.author_show',compact('autore'));
     }
 
     /**
@@ -103,8 +104,17 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Author $author)
+    public function destroy(Author $autore)
     {
-        //
+        foreach($autore->images as $image){
+            Storage::delete([$image->url]);
+            $image->delete();
+        }
+        $autore->delete();
+        return redirect()->route('autores.index')->with('delete','Se ha eliminado con exito el autor.');
+    }
+
+    public function libros(Author $autor){
+        return view('Booksto.Admin.author.author_books',compact('autor'));
     }
 }

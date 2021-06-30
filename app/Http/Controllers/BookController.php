@@ -23,7 +23,7 @@ class BookController extends Controller
         if (!Gate::allows('admin')) {
             abort(403);
         }
-        $books = Book::all();
+        $books = Book::with('category:id,nombre')->get();
         return view('Booksto.Admin.book.book_index',compact('books'));
     }
 
@@ -97,7 +97,6 @@ class BookController extends Controller
      */
     public function edit(Book $libro)
     {
-        
         return view('Booksto.Admin.book.book_formEdit', compact('libro'));
     }
 

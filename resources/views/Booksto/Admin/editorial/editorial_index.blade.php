@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
@@ -13,6 +14,30 @@
 @endsection
 
 @section('content')
+    @if (session('create'))
+        <div class="alert text-white bg-primary w-full" role="alert">
+            <div class="iq-alert-text">{{ session('create') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
+    @if (session('update'))
+        <div class="alert text-white bg-warning w-full" role="alert">
+            <div class="iq-alert-text">{{ session('update') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
+    @if (session('delete'))
+        <div class="alert text-white bg-danger w-full" role="alert">
+            <div class="iq-alert-text">{{ session('delete') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
     <div class="col-sm-12">
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
@@ -30,10 +55,6 @@
                             <tr>
                                 <th width="5%">Id</th>
                                 <th width="10%">Nombre</th>
-                                <th width="10%">Ciudad</th>
-                                <th width="10%">Direccion</th>
-                                <th width="10%">Telefono</th>
-                                <th width="10%">email</th>
                                 <th width="10%">Acciones</th>
                             </tr>
                         </thead>
@@ -42,25 +63,17 @@
                                 <tr>
                                     <td>{{ $editorial->id }}</td>
                                     <td>{{ $editorial->nombre }}</td>
-                                    <td>{{ $editorial->ciudad }}</td>
-                                    <td>{{ $editorial->direccion }}</td>
-                                    <td>{{ $editorial->telefono }}</td>
-                                    <td>{{ $editorial->email }}</td>
                                     <td>
-                                        <div class="flex align-items-center list-user-action">
-
-                                            <a href="{{ route('editoriales.show', $editorial) }}" class="bg-primary"
-                                                data-toggle="tooltip" data-placement="top" title=""
-                                                data-original-title="Detalles">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('editoriales.edit', $editorial) }}" class="bg-warning"
-                                                data-toggle="tooltip" data-placement="top" title=""
-                                                data-original-title="Editar">
-                                                <i class="ri-pencil-line"></i>
-                                            </a>
-
-                                        </div>
+                                        <a href="{{ route('editoriales.show', $editorial) }}"
+                                            class="btn btn-primary mt-2">
+                                            <i class="fa fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="{{ route('editoriales.edit', $editorial) }}"
+                                            class="btn btn-warning mt-2 text-white">
+                                            <i class="ri-pencil-line"></i>
+                                            Editar editorial
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

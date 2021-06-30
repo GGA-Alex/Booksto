@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @extends('layouts\Booksto - Layouts\bookstoForm')
 
 @section('pageName')
@@ -22,35 +23,27 @@
                 </div>
             </div>
             <div class="iq-card-body">
-                @if ($errors->any())
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <div class="alert text-white bg-danger" role="alert">
-                                <div class="iq-alert-text">{{$error}}</div>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <i class="ri-close-line"></i>
-                                </button>
-                             </div>
-                            @endforeach
-                        </ul>
-                @endif
                 @if (isset($categoria))
-                    <form action="{{ route('categorias.update', $categoria) }}" method="POST" >
+                    <form action="{{ route('categorias.update', $categoria) }}" method="POST">
                         @method('PATCH')
-                @else
-                    <form action="{{ route('categorias.store') }}" method="POST">
+                    @else
+                        <form action="{{ route('categorias.store') }}" method="POST">
                 @endif
 
                 @csrf
-                    <div class="form-group">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre" value="{{ old('nombre') ?? $categoria->nombre ?? '' }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="descripcion">Descripción:</label>
-                        <input type="text" class="form-control" name="descripcion" id="descripcion" value="{{ old('descripcion') ?? $categoria->descripcion ?? '' }}"></input>
-                    </div>
-                    <input type="submit" class="btn btn-primary"></input>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre"
+                        value="{{ old('nombre') ?? ($categoria->nombre ?? '') }}">
+                    <x-jet-input-error for="nombre" />
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" class="form-control" name="descripcion" id="descripcion"
+                        value="{{ old('descripcion') ?? ($categoria->descripcion ?? '') }}"></input>
+                    <x-jet-input-error for="descripcion" />
+                </div>
+                <input type="submit" class="btn btn-primary"></input>
                 </form>
             </div>
         </div>

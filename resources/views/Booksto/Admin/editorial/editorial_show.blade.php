@@ -27,6 +27,7 @@
                                 <th width="10%">Direccion</th>
                                 <th width="10%">Telefono</th>
                                 <th width="10%">email</th>
+                                <th width="10%">Libros almacenados</th>
                                 <th width="10%">Acciones</th>
                             </tr>
                         </thead>
@@ -39,14 +40,32 @@
                                 <td>{{ $editoriale->telefono }}</td>
                                 <td>{{ $editoriale->email }}</td>
                                 <td>
-                                    <form action="{{ route('editoriales.destroy', $editoriale) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <span class="table-remove">
-                                            <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">Eliminar
-                                                editorial</button>
-                                        </span>
-                                    </form>
+                                    {{ $editoriale->books->count() }}
+
+                                    @if ($editoriale->books->count())
+                                        <br>
+                                        <a href="{{ route('editoriales.libros', $editoriale) }}"
+                                            class="btn btn-primary mt-2">
+                                            Ver libros
+                                        </a>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($editoriale->books->count())
+                                        <p class="iq-bg-danger p-1">No se puede eliminar esta editorial</p>
+                                    @else
+                                        <form action="{{ route('editoriales.destroy', $editoriale) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <span class="table-remove">
+                                                <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">
+                                                    Eliminar editorial
+                                                </button>
+                                            </span>
+                                        </form>
+                                    @endif
+
+
                                 </td>
                             </tr>
                         </tbody>

@@ -12,10 +12,6 @@
     </div>
 @endsection
 
-@section('banner')
-
-@endsection
-
 @section('content')
     @if ($pendiente)
         <div class="alert text-white bg-danger w-full" role="alert">
@@ -64,6 +60,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="col-6 p-0 position-relative image-overlap-shadow">
                                             <a href="javascript:void();">
+
                                                 @if ($book->images->count())
                                                     <img class="img-fluid rounded w-100"
                                                         src="{{ Storage::url($book->images->first()->url) }}" alt="">

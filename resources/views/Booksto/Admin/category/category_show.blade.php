@@ -28,7 +28,8 @@
                             <tr>
                                 <th width="5%">Id</th>
                                 <th width="20%">Nombre</th>
-                                <th width="65%">Descripción</th>
+                                <th width="40%">Descripción</th>
+                                <th width="20%">Libros almacenados</th>
                                 <th width="10%">Acción</th>
                             </tr>
                         </thead>
@@ -40,14 +41,31 @@
                                 <td>{{ $categoria->descripcion }}</td>
                                 </td>
                                 <td>
-                                    <form action="{{ route('categorias.destroy', $categoria) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <span class="table-remove">
-                                            <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">Eliminar
-                                                Categoria</button>
-                                        </span>
-                                    </form>
+                                    {{ $categoria->books->count() }}
+
+                                    @if ($categoria->books->count())
+                                        <br>
+                                        <a href="{{ route('categorias.libros', $categoria) }}"
+                                            class="btn btn-primary mt-2">
+                                            Ver libros
+                                        </a>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($categoria->books->count())
+                                        <p class="iq-bg-danger p-1">No se puede eliminar esta categoria</p>
+                                    @else
+                                        <form action="{{ route('categorias.destroy', $categoria) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <span class="table-remove">
+                                                <button type="submit"
+                                                    class="btn iq-bg-danger btn-rounded btn-sm my-0">Eliminar
+                                                    Categoria</button>
+                                            </span>
+                                        </form>
+                                    @endif
+
                                 </td>
                             </tr>
                         </tbody>

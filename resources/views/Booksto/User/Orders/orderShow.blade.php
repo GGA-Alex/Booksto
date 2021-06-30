@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-sm-12">
                         <hr class="mt-3">
-                        <h5 class="mb-0">Hola, {{ auth()->user()->name }}</h5>
+                        <h5 class="mb-0">Resumen del pedido</h5>
                     </div>
                 </div>
                 <div class="row">

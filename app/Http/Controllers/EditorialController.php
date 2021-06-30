@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Editorial;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
@@ -20,7 +21,7 @@ class EditorialController extends Controller
         if (!Gate::allows('admin')) {
             abort(403);
         }
-        $editoriales = Editorial::all();
+        $editoriales = Editorial::with('books')->get();
         return view('Booksto.Admin.editorial.editorial_index', compact('editoriales'));
     }
 
@@ -50,10 +51,10 @@ class EditorialController extends Controller
         }
 
         $request->validate([
-            'nombre' => 'required|string|min:5|max:255|unique:editorials,nombre',
-            'direccion' => 'string|max:255',
+            'nombre' => 'required|string|min:5|max:255|unique:editorials',
+            'direccion' => 'required|string|max:255',
             'telefono' => 'required|integer',
-            'email' => 'required|email|min:12|max:255|unique:editorials,email',
+            'email' => 'required|email|min:12|max:255|unique:editorials',
             'ciudad' => 'required|string|max:255'
         ]);
 
@@ -66,7 +67,7 @@ class EditorialController extends Controller
         $newEditorial->slug = Str::slug($request->nombre);
         $newEditorial->save();
 
-        return redirect()->route('editoriales.index');
+        return redirect()->route('editoriales.index')->with('create','Editorial agregada con exito.');
     }
 
     /**
@@ -112,7 +113,7 @@ class EditorialController extends Controller
 
         $request->validate([
             'nombre' => ['required','string','min:5','max:255',Rule::unique('editorials')->ignore($editoriale->id)],
-            'direccion' => 'string|max:255',
+            'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|min:10',
             'email' => ['required','email','min:12','max:255',Rule::unique('editorials')->ignore($editoriale->id)],
             'ciudad' => 'required|string|max:255'
@@ -120,7 +121,7 @@ class EditorialController extends Controller
 
         Editorial::where('id', $editoriale->id)->update($request->except('_token','_method'));
 
-        return redirect()->route('editoriales.show',compact('editoriale'));
+        return redirect()->route('editoriales.index')->with('update','Editorial actualizada con exito.');
     }
 
     /**
@@ -132,6 +133,10 @@ class EditorialController extends Controller
     public function destroy(Editorial $editoriale)
     {
         $editoriale->delete();
-        return redirect()->route('editorial.index');
+        return redirect()->route('editoriales.index')->with('delete','Editorial eliminada con exito.');
+    }
+
+    public function libros(Editorial $editorial){
+        return view('Booksto.Admin.editorial.editorial_books',compact('editorial'));
     }
 }

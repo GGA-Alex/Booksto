@@ -30,7 +30,7 @@
     <a href="{{ route('ordenes.index') . '?status=2' }}" class="col">
         <div class="iq-card text-white bg-dark iq-mb-3">
             <div class="iq-card-body text-center">
-                <h4 class="card-title text-white">RECIBIDO</h4>
+                <h4 class="card-title text-white">PAGO RECIBIDO</h4>
                 <blockquote class="blockquote mb-0">
                     <h3 class="text-white">
                         {{ $recibido }}
@@ -143,7 +143,7 @@
                                         Pendiente
                                     @break
                                     @case(2)
-                                        Recibido
+                                        Pago Recibido
                                     @break
                                     @case(3)
                                         Enviado

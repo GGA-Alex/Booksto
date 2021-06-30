@@ -1,4 +1,5 @@
-@extends('layouts\Booksto - Layouts\booksto')
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+@extends('layouts\Booksto - Layouts\bokstoFormAdmin')
 
 @section('pageName')
     <div class="navbar-breadcrumb">
@@ -25,21 +26,18 @@
                 <form action="{{ route('autores.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="name">Nombre:</label>
-                        <input type="text" class="form-control" name="name" id="name">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control border-gray-300 rounded-lg" name="nombre" id="nombre"
+                            value="{{ old('nombre') }}">
+                        <x-jet-input-error for="nombre" />
                     </div>
                     <div class="form-group">
-                        <label for="image">Imagen:</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="image" id="image">
-                            <label class="custom-file-label" for="image"></label>
-                        </div>
+                        <label for="pais">País:</label>
+                        <input type="text" class="form-control border-gray-300 rounded-lg" name="pais" id="pais"
+                            value="{{ old('pais') }}">
+                        <x-jet-input-error for="pais" />
                     </div>
-                    <div class="form-group">
-                        <label for="country">País:</label>
-                        <input type="text" class="form-control" name="country" id="country">
-                    </div>
-                    <input type="submit" class="btn btn-primary"></input>
+                    <input type="submit" class="btn btn-primary mt-2 " value="Guardar autor"></input>
                 </form>
             </div>
         </div>

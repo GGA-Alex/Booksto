@@ -25,7 +25,7 @@ class AuthorFactory extends Factory
         $name = $this->faker->name($gender = 'male' | 'female');
         return [
             'nombre' => $name,
-            'ciudad' => $this->faker->country(),
+            'pais' => $this->faker->country(),
             'slug' => Str::slug($name)
         ];
     }

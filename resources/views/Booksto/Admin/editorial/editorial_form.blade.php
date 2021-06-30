@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
@@ -22,18 +23,6 @@
                 </div>
             </div>
             <div class="iq-card-body">
-                @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <div class="alert text-white bg-danger" role="alert">
-                                <div class="iq-alert-text">{{ $error }}</div>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="ri-close-line"></i>
-                                </button>
-                            </div>
-                        @endforeach
-                    </ul>
-                @endif
                 @if (isset($editoriale))
                     <form action="{{ route('editoriales.update', $editoriale) }}" method="POST">
                         @method('PATCH')
@@ -46,26 +35,31 @@
                     <label for="nombre">Nombre:</label>
                     <input type="text" class="form-control" name="nombre" id="nombre"
                         value="{{ old('nombre') ?? ($editoriale->nombre ?? '') }}">
+                    <x-jet-input-error for="nombre" />
                 </div>
                 <div class="form-group">
                     <label for="direccion">Direccion:</label>
                     <input type="text" class="form-control" name="direccion" id="direccion"
-                        value="{{ old('nombre') ?? ($editoriale->direccion ?? '') }}">
+                        value="{{ old('direccion') ?? ($editoriale->direccion ?? '') }}">
+                    <x-jet-input-error for="direccion" />
                 </div>
                 <div class="form-group">
                     <label for="telefono">Telefono:</label>
                     <input type="text" class="form-control" name="telefono" id="telefono"
-                        value="{{ old('nombre') ?? ($editoriale->telefono ?? '') }}">
+                        value="{{ old('telefono') ?? ($editoriale->telefono ?? '') }}">
+                    <x-jet-input-error for="telefono" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control" name="email" id="email"
-                        value="{{ old('nombre') ?? ($editoriale->email ?? '') }}">
+                        value="{{ old('email') ?? ($editoriale->email ?? '') }}">
+                    <x-jet-input-error for="email" />
                 </div>
                 <div class="form-group">
                     <label for="ciudad">Ciudad:</label>
                     <input type="text" class="form-control" name="ciudad" id="ciudad"
-                        value="{{ old('descripcion') ?? ($editoriale->ciudad ?? '') }}"></input>
+                        value="{{ old('ciudad') ?? ($editoriale->ciudad ?? '') }}"></input>
+                    <x-jet-input-error for="ciudad" />
                 </div>
                 <input type="submit" class="btn btn-primary"></input>
                 </form>

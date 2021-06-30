@@ -1,5 +1,5 @@
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @extends('layouts\Booksto - Layouts\bookstoAdmin')
-
 
 @section('pageName')
     <div class="navbar-breadcrumb">
@@ -14,6 +14,30 @@
 @endsection
 
 @section('content')
+    @if (session('create'))
+        <div class="alert text-white bg-primary w-full" role="alert">
+            <div class="iq-alert-text">{{ session('create') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
+    @if (session('update'))
+        <div class="alert text-white bg-warning w-full" role="alert">
+            <div class="iq-alert-text">{{ session('update') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
+    @if (session('delete'))
+        <div class="alert text-white bg-danger w-full" role="alert">
+            <div class="iq-alert-text">{{ session('delete') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
     <div class="col-sm-12">
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
@@ -31,8 +55,8 @@
                             <tr>
                                 <th width="5%">Id</th>
                                 <th width="20%">Nombre</th>
-                                <th width="65%">Descripción</th>
-                                <th width="10%">Acciones</th>
+                                <th width="20%">Descripción</th>
+                                <th width="20%">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,20 +66,15 @@
                                     <td>{{ $categoria->nombre }}</td>
                                     <td>{{ $categoria->descripcion }}</td>
                                     <td>
-                                        <div class="flex align-items-center list-user-action">
-
-                                            <a href="{{ route('categorias.show', $categoria) }}" class="bg-primary"
-                                                data-toggle="tooltip" data-placement="top" title=""
-                                                data-original-title="Detalles">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('categorias.edit', $categoria) }}" class="bg-warning"
-                                                data-toggle="tooltip" data-placement="top" title=""
-                                                data-original-title="Editar">
-                                                <i class="ri-pencil-line"></i>
-                                            </a>
-
-                                        </div>
+                                        <a href="{{ route('categorias.show', $categoria) }}" class="btn btn-primary mt-2">
+                                            <i class="fa fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="{{ route('categorias.edit', $categoria) }}"
+                                            class="btn btn-warning mt-2 text-white">
+                                            <i class="ri-pencil-line"></i>
+                                            Editar categoria
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

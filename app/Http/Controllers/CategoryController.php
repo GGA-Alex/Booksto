@@ -20,7 +20,7 @@ class CategoryController extends Controller
         if (!Gate::allows('admin')) {
             abort(403);
         }
-        $categorias = Category::all();
+        $categorias = Category::with('books')->get();
         return view('Booksto.Admin.category.category_index', compact('categorias'));
     }
 
@@ -50,7 +50,7 @@ class CategoryController extends Controller
         }
 
         $request->validate([
-            'nombre' => 'required|string|min:5|max:255|unique:categories,nombre',
+            'nombre' => 'required|string|min:5|max:255|unique:categories',
             'descripcion' => 'required|string|min:20|max:2000'
         ]);
 
@@ -60,7 +60,7 @@ class CategoryController extends Controller
         $newCategory->slug = Str::slug($request->nombre);
         $newCategory->save();
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('create','Categoria agregada con exito.');
     }
 
     /**
@@ -106,7 +106,7 @@ class CategoryController extends Controller
         ]);
         
         Category::where('id', $categoria->id)->update($request->except('_token','_method'));
-        return redirect()->route('categorias.show',$categoria);
+        return redirect()->route('categorias.index')->with('update','Categoria actualizada con exito.');
     }
 
     /**
@@ -118,6 +118,10 @@ class CategoryController extends Controller
     public function destroy(Category $categoria)
     {
         $categoria->delete();
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('delete','Categoria eliminada con exito.');
+    }
+
+    public function libros(Category $categoria){
+        return view('Booksto.Admin.category.category_books',compact('categoria'));
     }
 }
