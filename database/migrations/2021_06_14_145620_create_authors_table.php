@@ -18,7 +18,6 @@ class CreateAuthorsTable extends Migration
             $table->string('nombre');
             $table->string('ciudad');
             $table->string('slug');
-            $table->string('imagen');
             $table->timestamps();
         });
     }

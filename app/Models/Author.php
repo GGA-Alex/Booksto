@@ -12,12 +12,16 @@ class Author extends Model
     protected $fillable = [
         'nombre',
         'ciudad',
-        'slug',
-        'imagen'
+        'slug'
     ];
 
     public function books()
     {
         return $this->belongsToMany(Book::class);
+    }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, "imageable");
     }
 }

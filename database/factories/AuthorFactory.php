@@ -26,8 +26,7 @@ class AuthorFactory extends Factory
         return [
             'nombre' => $name,
             'ciudad' => $this->faker->country(),
-            'slug' => Str::slug($name),
-            'imagen' => 'authors/' . $this->faker->image('public/storage/authors', 640, 480, null, false)
+            'slug' => Str::slug($name)
         ];
     }
 }

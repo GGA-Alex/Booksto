@@ -156,7 +156,7 @@
                             <div class="icon iq-icon-box mr-3">
                                 <a href="javascript:void();">
                                     <img class="img-fluid avatar-60 rounded-circle"
-                                        src="{{ Storage::url($author->imagen) }}" alt=""></a>
+                                        src="{{ Storage::url($author->images->first()->url) }}" alt=""></a>
                             </div>
                             <div class="mt-1">
                                 <h6>{{ $author->nombre }}</h6>

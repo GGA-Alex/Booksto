@@ -11,6 +11,7 @@ use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\EmailVerificationController;
 
 
 
@@ -26,6 +27,11 @@ Route::get('libro/{book}', [PageController::class, 'BookPage'])->name('books.sho
 
 Route::get('carrito', [ShoppingCartController::class, 'index'])->name('shopping-cart');
 
+//Rutas verificación email
+
+Route::get('/email/verify', [EmailVerificationController::Class, 'notice'])->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::Class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
 //Rutas creacion de ordenes
 
 Route::middleware(['auth'])->group(Function(){
