@@ -64,4 +64,4 @@ ___
 
 **Autor**
 
-- Alejandro Gaytán Gutierrez
+- Alejandro Gaytán
