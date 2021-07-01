@@ -26,6 +26,7 @@
                     <table class="data-tables table table-striped table-bordered text-center">
                         <thead>
                             <tr>
+                                <th scope="col">ID-Orden</th>
                                 <th scope="col">Cliente</th>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Id orden</th>
@@ -38,6 +39,7 @@
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
+                                    <td>{{ $order->id }}</td>
                                     <td>{{ $order->user->name }}</td>
                                     <td>{{ $order->created_at->format('d/m/Y') }}</td>
                                     <td>{{ $order->id }}</td>

@@ -3,12 +3,12 @@
 
 @section('pageName')
     <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Libros</h5>
+        <h5 class="mb-0">Agregar Libro</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('libros.index') }}">Libros</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Formulario</li>
+                <li class="breadcrumb-item active" aria-current="page">Agregar Libro</li>
             </ul>
         </nav>
     </div>
@@ -38,8 +38,7 @@
                     </div>
                     <div class="form-group">
                         <label for="category_id">Categoria:</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="category_id" id="category_id"
-                            value="{{ old('category_id') }}">
+                        <select class="form-control" name="category_id" id="category_id" value="{{ old('category_id') }}">
                             <option value="" selected disabled>Seleccione una categoria</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->nombre }}</option>
@@ -49,7 +48,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editorial_id">Editorial:</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="editorial_id" id="editorial_id"
+                        <select class="form-control" name="editorial_id" id="editorial_id"
                             value="{{ old('editorial_id') }}">
                             <option value="" selected disabled>Seleccione una editorial</option>
                             @foreach ($editorials as $editorial)
@@ -88,7 +87,7 @@
                             value="{{ old('edicion') }}" min="1">
                         <x-jet-input-error for="edicion" />
                     </div>
-                    <input type="submit" class="btn btn-dark" value="Guardar producto" />
+                    <input type="submit" class="btn btn-dark" value="Guardar libro" />
                 </form>
             </div>
         </div>

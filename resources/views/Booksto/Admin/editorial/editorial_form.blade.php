@@ -61,7 +61,7 @@
                         value="{{ old('ciudad') ?? ($editoriale->ciudad ?? '') }}"></input>
                     <x-jet-input-error for="ciudad" />
                 </div>
-                <input type="submit" class="btn btn-primary"></input>
+                <input type="submit" class="btn btn-dark" value="Guardar editorial"></input>
                 </form>
             </div>
         </div>

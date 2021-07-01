@@ -3,12 +3,12 @@
 
 @section('pageName')
     <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Autores</h5>
+        <h5 class="mb-0">Formulario Autores</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('autores.index') }}">Autores</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Formulario</li>
+                <li class="breadcrumb-item active" aria-current="page">Formulario autores</li>
             </ul>
         </nav>
     </div>

@@ -51,7 +51,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string',
+            'nombre' => 'required|string|unique:books',
             'isbn' => 'required|string|unique:books',
             'category_id' => 'required|integer',
             'editorial_id' => 'required|integer',
@@ -111,7 +111,7 @@ class BookController extends Controller
     public function update(Request $request, Book $libro)
     {
         $request->validate([
-            'nombre' => 'required|string',
+            'nombre' => ['required','string',Rule::unique('books')->ignore($libro->id)],
             'isbn' => ['required','string',Rule::unique('books')->ignore($libro->id)],
             'category_id' => 'required|integer',
             'editorial_id' => 'required|integer',

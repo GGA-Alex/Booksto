@@ -17,8 +17,7 @@
                 </label>
             </div>
             <div class="flex justify-end items-center">
-                <button class="btn btn-dark uppercase w-48" wire:click="saved" wire:loading.attr="disabled"
-                    wire:target="saved">
+                <button class="btn btn-dark w-48" wire:click="saved" wire:loading.attr="disabled" wire:target="saved">
                     Actualizar
                 </button>
             </div>

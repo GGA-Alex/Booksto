@@ -2,7 +2,7 @@
 
 @section('pageName')
     <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Categorias</h5>
+        <h5 class="mb-0">Detalles Categoria</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
@@ -18,7 +18,13 @@
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
                 <div class="iq-header-title">
-                    <h4 class="card-title">Detalles de la categoria</h4>
+                    <h4 class="card-title">Detalles de la categoria: {{ $categoria->nombre }}</h4>
+                </div>
+                <div class="iq-card-header-toolbar d-flex align-items-center ">
+                    <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-warning text-white">
+                        <i class="ri-pencil-line"></i>
+                        Editar categoria
+                    </a>
                 </div>
             </div>
             <div class="iq-card-body">
@@ -59,8 +65,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <span class="table-remove">
-                                                <button type="submit"
-                                                    class="btn iq-bg-danger btn-rounded btn-sm my-0">Eliminar
+                                                <button type="submit" class="btn bg-danger btn-rounded btn-sm my-0">Eliminar
                                                     Categoria</button>
                                             </span>
                                         </form>

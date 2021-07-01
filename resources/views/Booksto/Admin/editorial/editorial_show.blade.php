@@ -2,7 +2,7 @@
 
 @section('pageName')
     <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Editoriales</h5>
+        <h5 class="mb-0">Detalles Editorial</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
@@ -16,6 +16,17 @@
 @section('content')
     <div class="col-sm-12">
         <div class="iq-card">
+            <div class="iq-card-header d-flex justify-content-between">
+                <div class="iq-header-title">
+                    <h4 class="card-title">Detalles de la editorial: {{ $editoriale->nombre }}</h4>
+                </div>
+                <div class="iq-card-header-toolbar d-flex align-items-center ">
+                    <a href="{{ route('editoriales.edit', $editoriale) }}" class="btn btn-warning text-white">
+                        <i class="ri-pencil-line"></i>
+                        Editar editorial
+                    </a>
+                </div>
+            </div>
             <div class="iq-card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered text-center" style="width:100%">

@@ -4,7 +4,7 @@
 
 @section('pageName')
     <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Agregar Usuario</h5>
+        <h5 class="mb-0">Editar Usuario</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
@@ -20,7 +20,7 @@
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
                 <div class="iq-header-title">
-                    <h4 class="card-title">Formulario de usuarios</h4>
+                    <h4 class="card-title">Editar usuario: {{ $usuario->name }}</h4>
                 </div>
             </div>
             <div class="iq-card-body">

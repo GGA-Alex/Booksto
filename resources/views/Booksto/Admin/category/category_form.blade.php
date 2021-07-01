@@ -3,12 +3,12 @@
 
 @section('pageName')
     <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Agregar Categoria</h5>
+        <h5 class="mb-0">Formulario Categoria</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('categorias.index') }}">Listado de Categorias</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Formulario</li>
+                <li class="breadcrumb-item active" aria-current="page">Formulario Categoria</li>
             </ul>
         </nav>
     </div>

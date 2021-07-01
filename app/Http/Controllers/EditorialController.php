@@ -113,8 +113,8 @@ class EditorialController extends Controller
 
         $request->validate([
             'nombre' => ['required','string','min:5','max:255',Rule::unique('editorials')->ignore($editoriale->id)],
-            'direccion' => 'required|string|max:255',
-            'telefono' => 'required|string|min:10',
+            'direccion' => 'string|max:255',
+            'telefono' => 'required|string|max:10',
             'email' => ['required','email','min:12','max:255',Rule::unique('editorials')->ignore($editoriale->id)],
             'ciudad' => 'required|string|max:255'
         ]);

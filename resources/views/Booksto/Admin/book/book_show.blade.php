@@ -2,7 +2,7 @@
 
 @section('pageName')
     <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Libros</h5>
+        <h5 class="mb-0">Detalles Libro</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="admin.index">Dashboard</a></li>
@@ -18,7 +18,7 @@
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
                 <div class="iq-header-title">
-                    <h4 class="card-title">Detalles del libro</h4>
+                    <h4 class="card-title">Detalles del libro: {{ $libro->nombre }}</h4>
                 </div>
                 <div class="iq-card-header-toolbar d-flex align-items-center ">
                     <a href="{{ route('libros.edit', $libro) }}" class="btn btn-warning text-white">

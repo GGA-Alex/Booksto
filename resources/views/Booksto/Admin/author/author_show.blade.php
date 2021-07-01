@@ -2,7 +2,7 @@
 
 @section('pageName')
     <div class="navbar-breadcrumb">
-        <h5 class="mb-0">Autores</h5>
+        <h5 class="mb-0">Detalles del Autor</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
@@ -18,7 +18,13 @@
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
                 <div class="iq-header-title">
-                    <h4 class="card-title">Lista de autores</h4>
+                    <h4 class="card-title">Detalles del autor: {{ $autore->nombre }}</h4>
+                </div>
+                <div class="iq-card-header-toolbar d-flex align-items-center ">
+                    <a href="{{ route('autores.edit', $autore) }}" class="btn btn-warning text-white">
+                        <i class="ri-pencil-line"></i>
+                        Editar autor
+                    </a>
                 </div>
             </div>
             <div class="iq-card-body">
@@ -39,8 +45,11 @@
                                 <td>{{ $autore->id }}</td>
                                 <td>
                                     @if ($autore->images->count())
-                                        <img src="{{ Storage::url($autore->images->first()->url) }}"
-                                            class="img-fluid avatar-50 rounded" alt="author-profile">
+                                        @foreach ($autore->images as $image)
+                                            <img src="{{ Storage::url($image->url) }}" class="img-fluid rounded"
+                                                alt="author-profile">
+                                        @endforeach
+
                                     @else
                                         <img class="img-fluid avatar-50 rounded"
                                             src="{{ asset('bookstore/images/logo.png') }}" alt="">
