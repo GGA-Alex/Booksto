@@ -14,7 +14,7 @@ class CreateAuthorBookTable extends Migration
     public function up()
     {
         Schema::create('author_book', function (Blueprint $table) {
-            $table->id();
+
             $table->unsignedBigInteger('book_id');
             $table->foreign('book_id')->references('id')->on('books');
 

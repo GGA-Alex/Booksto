@@ -25,7 +25,7 @@
                 </li>
                 <hr>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('usuarios.index') }}">
                         <i class="las la-user-cog"></i>
                         <span>Administrar usuarios</span>
                     </a>
@@ -52,6 +52,12 @@
                     <a href="{{ route('editoriales.index') }}">
                         <i class="las la-bookmark"></i>
                         <span>Administrar editoriales</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('ordenes.index') }}">
+                        <i class="las la-truck"></i>
+                        <span>Administrar ordenes</span>
                     </a>
                 </li>
                 <hr>

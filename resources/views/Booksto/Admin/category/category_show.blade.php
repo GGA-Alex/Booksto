@@ -53,7 +53,7 @@
                                 </td>
                                 <td>
                                     @if ($categoria->books->count())
-                                        <p class="iq-bg-danger p-1">No se puede eliminar esta categoria</p>
+                                        <p class="bg-danger p-1">No se puede eliminar esta categoria</p>
                                     @else
                                         <form action="{{ route('categorias.destroy', $categoria) }}" method="POST">
                                             @csrf

@@ -151,9 +151,13 @@
                     @foreach ($authors as $author)
                         <li class="col-sm-6 d-flex mb-3 align-items-center">
                             <div class="icon iq-icon-box mr-3">
-                                <a href="javascript:void();">
+                                @if ($author->images->count())
                                     <img class="img-fluid avatar-60 rounded-circle"
-                                        src="{{ Storage::url($author->images->first()->url) }}" alt=""></a>
+                                        src="{{ Storage::url($author->images->first()->url) }}" alt="">
+                                @else
+                                    <img class="img-fluid avatar-50 rounded-circle"
+                                        src="{{ asset('bookstore/images/logo.png') }}" alt="">
+                                @endif
                             </div>
                             <div class="mt-1">
                                 <h6>{{ $author->nombre }}</h6>

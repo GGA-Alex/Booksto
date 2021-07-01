@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
@@ -14,9 +15,18 @@
 @endsection
 
 @section('content')
+
     @if (session('create'))
         <div class="alert text-white bg-primary w-full" role="alert">
             <div class="iq-alert-text">{{ session('create') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
+    @if (session('update'))
+        <div class="alert text-white bg-warning w-full" role="alert">
+            <div class="iq-alert-text">{{ session('update') }}</div>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <i class="ri-close-line"></i>
             </button>
@@ -26,7 +36,7 @@
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
                 <div class="iq-header-title">
-                    <h4 class="card-title">Agregar Libro</h4>
+                    <h4 class="card-title">Editar información del libro</h4>
                 </div>
             </div>
             <div class="iq-card-body">

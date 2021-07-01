@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
@@ -22,68 +23,70 @@
                 </div>
             </div>
             <div class="iq-card-body">
-                @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <div class="alert text-white bg-danger" role="alert">
-                                <div class="iq-alert-text">{{ $error }}</div>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="ri-close-line"></i>
-                                </button>
-                            </div>
-                        @endforeach
-                    </ul>
-                @endif
                 <form action="{{ route('libros.store') }}" method="POST">
 
                     @csrf
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre">
+                        <input type="text" class="form-control" name="nombre" id="nombre" value="{{ old('nombre') }}">
+                        <x-jet-input-error for="nombre" />
                     </div>
                     <div class=" form-group">
                         <label for="isbn">ISBN:</label>
-                        <input type="text" class="form-control" name="isbn" id="isbn">
+                        <input type="text" class="form-control" name="isbn" id="isbn" value="{{ old('isbn') }}">
+                        <x-jet-input-error for="isbn" />
                     </div>
                     <div class="form-group">
                         <label for="category_id">Categoria:</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="category_id" id="category_id">
+                        <select class="form-control" id="exampleFormControlSelect1" name="category_id" id="category_id"
+                            value="{{ old('category_id') }}">
                             <option value="" selected disabled>Seleccione una categoria</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->nombre }}</option>
                             @endforeach
                         </select>
+                        <x-jet-input-error for="category_id" />
                     </div>
                     <div class="form-group">
                         <label for="editorial_id">Editorial:</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="editorial_id" id="editorial_id">
+                        <select class="form-control" id="exampleFormControlSelect1" name="editorial_id" id="editorial_id"
+                            value="{{ old('editorial_id') }}">
                             <option value="" selected disabled>Seleccione una editorial</option>
                             @foreach ($editorials as $editorial)
                                 <option value="{{ $editorial->id }}">{{ $editorial->nombre }}</option>
                             @endforeach
                         </select>
+                        <x-jet-input-error for="editorial_id" />
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripcion:</label>
-                        <textarea class="form-control" rows="4" name="descripcion" id="descripcion"></textarea>
+                        <textarea class="form-control" rows="4" name="descripcion" id="descripcion"
+                            value="{{ old('descripcion') }}"></textarea>
+                        <x-jet-input-error for="descripcion" />
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio:</label>
-                        <input type="number" step=".01" class="form-control" name="precio" id="precio">
+                        <input type="number" step=".01" class="form-control" name="precio" id="precio"
+                            value="{{ old('precio') }}">
+                        <x-jet-input-error for="precio" />
                     </div>
                     <div class="form-group">
                         <label for="paginas">Paginas:</label>
-                        <input type="number" class="form-control" name="paginas" id="paginas">
+                        <input type="number" class="form-control" name="paginas" id="paginas"
+                            value="{{ old('paginas') }}">
+                        <x-jet-input-error for="paginas" />
                     </div>
                     <div class="form-group">
                         <label for="año">Año de publicación:</label>
-                        <input type="number" class="form-control" name="año" id="año">
+                        <input type="number" class="form-control" name="año" id="año" value="{{ old('año') }}">
+                        <x-jet-input-error for="año" />
                     </div>
                     <div class="form-group">
                         <label for="edicion">Edición:</label>
-                        <input type="number" class="form-control" name="edicion" id="edicion">
+                        <input type="number" class="form-control" name="edicion" id="edicion"
+                            value="{{ old('edicion') }}">
+                        <x-jet-input-error for="edicion" />
                     </div>
-
                     <input type="submit" class="btn btn-dark" value="Guardar producto" />
                 </form>
             </div>

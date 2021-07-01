@@ -31,20 +31,26 @@ class PageController extends Controller
 
     public function BookPage(Book $book)
     {
-        $this->authorize('userType', User::class);
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         return view('Booksto.User.bookPage', compact('book'));
     }
 
     public function show()
     {
-        $this->authorize('userType', User::class);
-        $categories = Category::all();
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
+        $categories = Category::with('books')->get();
         return view('Booksto.User.categoryPage', compact('categories'));
     }
 
     public function showCategory(Category $categoria)
     {
-        $this->authorize('userType', User::class);
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         return view('Booksto.User.categoryShow', compact('categoria'));
     }
 }

@@ -12,6 +12,8 @@ use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 
 
 
@@ -71,10 +73,12 @@ Route::middleware(['auth','web'])->group(function () {
 
     Route::post('admin/autores/{autor}/imagenes', [AuthorController::class, 'imagenes'])->name('admin.autores.imagenes');
 
-    Route::resource('/admin/libros', BookController::class);
+    Route::resource('admin/libros', BookController::class);
 
     Route::post('admin/libros/{libro}/imagenes', [BookController::class, 'imagenes'])->name('admin.libros.imagenes');
     
-    
+    Route::resource('admin/usuarios', UserController::class);
+
+    Route::resource('admin/ordenes', OrderController::class);
 
 });

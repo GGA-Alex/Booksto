@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
@@ -13,6 +14,22 @@
 @endsection
 
 @section('content')
+    @if (session('update'))
+        <div class="alert text-white bg-warning w-full" role="alert">
+            <div class="iq-alert-text">{{ session('update') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
+    @if (session('delete'))
+        <div class="alert text-white bg-danger w-full" role="alert">
+            <div class="iq-alert-text">{{ session('delete') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
     <div class="col-sm-12">
         <div class="iq-card">
             <div class="iq-card-header d-flex justify-content-between">
@@ -33,7 +50,7 @@
                                 <th style="width: 15%;">Categoria</th>
                                 <th style="width: 7%;">Estado</th>
                                 <th style="width: 7%;">Precio</th>
-                                <th style="width: 7%;">Acción</th>
+                                <th style="width: 15%;">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,18 +73,15 @@
                                     </td>
                                     <td>${{ $book->precio }}</td>
                                     <td>
-                                        <div class="flex align-items-center list-user-action">
-                                            <a href="{{ route('libros.show', $book) }}" class="bg-primary"
-                                                data-toggle="tooltip" data-placement="top" title=""
-                                                data-original-title="Detalles">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('libros.edit', $book) }}" class="bg-warning"
-                                                data-toggle="tooltip" data-placement="top" title=""
-                                                data-original-title="Editar">
-                                                <i class="ri-pencil-line"></i>
-                                            </a>
-                                        </div>
+                                        <a href="{{ route('libros.show', $book) }}" class="btn btn-primary mt-2">
+                                            <i class="fa fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="{{ route('libros.edit', $book) }}"
+                                            class="btn btn-warning mt-2 text-white">
+                                            <i class="ri-pencil-line"></i>
+                                            Editar libro
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

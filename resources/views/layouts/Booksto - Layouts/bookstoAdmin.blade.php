@@ -136,8 +136,7 @@
     <!-- Custom JavaScript -->
     <script src="{{ asset('bookstorejs/custom.js') }}"></script>
     <!-- DROPZONE -->
-
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('script')
 </body>
 

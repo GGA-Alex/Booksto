@@ -21,15 +21,17 @@
         </div>
         <section>
             @foreach ($categories as $category)
-                <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex items-center mb-2">
-                        <h1 class="text-lg uppercase font-semibold">{{ $category->nombre }}</h1>
-                        <a class="ml-2 font-semibold hover:underline" href="{{ route('categoria.show', $category) }}">
-                            Ver mas...
-                        </a>
+                @if ($category->books->count())
+                    <div class="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex items-center mb-2">
+                            <h1 class="text-lg uppercase font-semibold">{{ $category->nombre }}</h1>
+                            <a class="ml-2 font-semibold hover:underline" href="{{ route('categoria.show', $category) }}">
+                                Ver mas...
+                            </a>
+                        </div>
+                        @livewire('category-books', ['category' => $category])
                     </div>
-                    @livewire('category-books', ['category' => $category])
-                </div>
+                @endif
             @endforeach
         </section>
 

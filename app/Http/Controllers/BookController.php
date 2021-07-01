@@ -52,14 +52,14 @@ class BookController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string',
-            'isbn' => 'required|string',
+            'isbn' => 'required|string|unique:books',
             'category_id' => 'required|integer',
             'editorial_id' => 'required|integer',
             'descripcion' => 'required',
             'precio' => 'required|min:0',
             'paginas' => 'required|integer|min:0',
-            'año' => 'required|integer|min:0',
-            'edicion' => 'required|integer|min:0',
+            'año' => 'required|integer|min:1990|max:2020',
+            'edicion' => 'required|integer|min:1',
         ]);
 
         $newBook = new Book();
@@ -72,10 +72,11 @@ class BookController extends Controller
         $newBook->paginas = $request->paginas;
         $newBook->año = $request->año;
         $newBook->edicion = $request->edicion;
+        $newBook->status = 2;
         $newBook->slug = Str::slug($request->nombre);
 
         $newBook->save();
-        return redirect()->route('libros.edit',$newBook);
+        return redirect()->route('libros.edit',$newBook)->with('create','Libro agregado con exito');
     }
     
     /**
@@ -122,7 +123,7 @@ class BookController extends Controller
         ]);
         
         Book::where('id', $libro->id)->update($request->except('_token','_method'));
-        return redirect()->route('libros.show',$libro);
+        return redirect()->route('libros.edit',$libro)->with('update','Se ha actualizado con exito el libro.');
     }
 
     /**
@@ -138,8 +139,11 @@ class BookController extends Controller
             Storage::delete([$image->url]);
             $image->delete();
         }
+        foreach($libro->authors as $author){
+            $libro->authors()->detach($author->id);
+        }
         $libro->delete();
-        return redirect()->route('libros.index');
+        return redirect()->route('libros.index')->with('delete','Se ha eliminado con exito el libro.');
     }
 
     public function imagenes(Book $libro, Request $request){

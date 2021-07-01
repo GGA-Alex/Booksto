@@ -63,7 +63,7 @@
                                 <td>
                                     <div class="flex align-items-center list-user-action">
                                         @if ($autore->books->count())
-                                            <p class="iq-bg-danger p-1">No se puede eliminar este autor</p>
+                                            <p class="bg-danger p-1">No se puede eliminar este autor</p>
                                         @else
                                             <form action="{{ route('autores.destroy', $autore) }}" method="POST">
                                                 @csrf
