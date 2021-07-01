@@ -67,24 +67,25 @@
                     <div class="form-group">
                         <label for="precio">Precio:</label>
                         <input type="number" step=".01" class="form-control" name="precio" id="precio"
-                            value="{{ old('precio') }}">
+                            value="{{ old('precio') }}" min="0">
                         <x-jet-input-error for="precio" />
                     </div>
                     <div class="form-group">
                         <label for="paginas">Paginas:</label>
                         <input type="number" class="form-control" name="paginas" id="paginas"
-                            value="{{ old('paginas') }}">
+                            value="{{ old('paginas') }}" min="0">
                         <x-jet-input-error for="paginas" />
                     </div>
                     <div class="form-group">
                         <label for="año">Año de publicación:</label>
-                        <input type="number" class="form-control" name="año" id="año" value="{{ old('año') }}">
+                        <input type="number" class="form-control" name="año" id="año" value="{{ old('año') }}"
+                            min="1990" max="2021">
                         <x-jet-input-error for="año" />
                     </div>
                     <div class="form-group">
                         <label for="edicion">Edición:</label>
                         <input type="number" class="form-control" name="edicion" id="edicion"
-                            value="{{ old('edicion') }}">
+                            value="{{ old('edicion') }}" min="1">
                         <x-jet-input-error for="edicion" />
                     </div>
                     <input type="submit" class="btn btn-dark" value="Guardar producto" />

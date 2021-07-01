@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 class EmailVerificationController extends Controller
 {
     public function notice(){
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         return view('auth.verify-email');
     }
 

@@ -69,7 +69,7 @@
         <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
             <div class="iq-card-body">
                 <div class="d-flex align-items-center">
-                    <div class="rounded-circle iq-card-icon bg-info"><i class="ri-function-line"></i></div>
+                    <div class="rounded-circle iq-card-icon bg-dark"><i class="ri-function-line"></i></div>
                     <div class="text-left ml-3">
                         <h2 class="mb-0"><span class="counter">{{ $categories }}</span></h2>
                         <h5 class="">Categorias</h5>
@@ -124,7 +124,6 @@
                                             @break
                                             @default
                                         @endswitch
-
                                     </td>
                                 </tr>
                             @endforeach

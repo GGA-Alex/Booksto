@@ -46,7 +46,7 @@
 
                             </li>
                             <li>
-                                <a href="{{ route('profile.show') }}">
+                                <a href="{{ route('user.profile') }}">
                                     <i class="las la-id-card-alt"></i>
                                     Perfil de usuario
                                 </a>

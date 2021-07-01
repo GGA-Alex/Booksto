@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-@extends('layouts\Booksto - Layouts\bokstoFormAdmin')
+@extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
     <div class="navbar-breadcrumb">

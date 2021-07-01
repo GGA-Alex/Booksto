@@ -19,11 +19,11 @@ class CreateOrder extends Component
     
     public $rules =[
         'contact' => 'required',
-        'phone' => 'required',
+        'phone' => 'required|max:10',
         'state_id' => 'required',
         'municipality_id' => 'required',
-        'address' => 'required',
-        'reference' => 'required',
+        'address' => 'required|min:10',
+        'reference' => 'required|min:15',
     ];
 
     public function updatedStateId($value){

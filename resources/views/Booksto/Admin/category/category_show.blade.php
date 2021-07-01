@@ -1,4 +1,4 @@
-@extends('layouts\Booksto - Layouts\bookstoForm')
+@extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
     <div class="navbar-breadcrumb">

@@ -45,7 +45,9 @@
                     <h4 class="card-title">Lista de autores</h4>
                 </div>
                 <div class="iq-card-header-toolbar d-flex align-items-center">
-                    <a href="{{ route('autores.create') }}" class="btn btn-primary">Agregar un nuevo autor</a>
+                    <a href="{{ route('autores.create') }}" class="btn btn-primary">
+                        Agregar un nuevo autor
+                    </a>
                 </div>
             </div>
 

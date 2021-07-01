@@ -9,6 +9,9 @@ class SearchController extends Controller
 {
     public function __invoke(Request $request)
     {
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         $name = $request->name;
 
         $books = Book::where('nombre','like','%' . $name . '%')

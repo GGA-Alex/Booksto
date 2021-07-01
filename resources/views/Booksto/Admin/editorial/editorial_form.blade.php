@@ -6,7 +6,7 @@
         <h5 class="mb-0">Agregar Editorial</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('editoriales.index') }}">Listado de Editoriales</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Formulario</li>
             </ul>

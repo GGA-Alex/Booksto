@@ -69,19 +69,27 @@
                         <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                     </a>
                     <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle" style="">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); this.closest('form').submit();">
-                                    <i class="las la-sign-out-alt"></i>
-                                    Cerrar sesión
-                                </a>
-                            </li>
+                        <li>
+                            <a href="{{ route('admin.profile') }}">
+                                <i class="las la-id-card-alt"></i>
+                                Perfil de usuario
+                            </a>
+                        </li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                <i class="las la-sign-out-alt"></i>
+                                Cerrar sesión
+                            </a>
+                        </li>
 
                         </form>
-                    </ul>
                 </li>
+            </ul>
+            </li>
             </ul>
         </nav>
     </div>

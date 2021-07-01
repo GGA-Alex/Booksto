@@ -1,4 +1,5 @@
 @extends('layouts\Booksto - Layouts\booksto')
+
 @section('pageName')
     <div class="navbar-breadcrumb">
         <h5 class="mb-0">Ordenes</h5>

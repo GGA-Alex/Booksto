@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-@extends('layouts\Booksto - Layouts\bookstoForm')
+@extends('layouts\Booksto - Layouts\bookstoAdmin')
 
 @section('pageName')
     <div class="navbar-breadcrumb">
@@ -40,10 +40,10 @@
                 <div class="form-group">
                     <label for="descripcion">Descripción:</label>
                     <input type="text" class="form-control" name="descripcion" id="descripcion"
-                        value="{{ old('descripcion') ?? ($categoria->descripcion ?? '') }}"></input>
+                        value="{{ old('descripcion') ?? ($categoria->descripcion ?? '') }}" />
                     <x-jet-input-error for="descripcion" />
                 </div>
-                <input type="submit" class="btn btn-primary"></input>
+                <input type="submit" class="btn btn-dark" value="Guardar categoria"></input>
                 </form>
             </div>
         </div>

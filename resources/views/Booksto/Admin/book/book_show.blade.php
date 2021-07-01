@@ -6,7 +6,7 @@
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="admin.index">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('libros.index') }}">Listado de Categorias</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('libros.index') }}">Listado de libros</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $libro->nombre }}</li>
             </ul>
         </nav>
@@ -19,6 +19,12 @@
             <div class="iq-card-header d-flex justify-content-between">
                 <div class="iq-header-title">
                     <h4 class="card-title">Detalles del libro</h4>
+                </div>
+                <div class="iq-card-header-toolbar d-flex align-items-center ">
+                    <a href="{{ route('libros.edit', $libro) }}" class="btn btn-warning text-white">
+                        <i class="ri-pencil-line"></i>
+                        Editar libro
+                    </a>
                 </div>
             </div>
             <div class="iq-card-body">
@@ -65,8 +71,9 @@
                                         @csrf
                                         @method('DELETE')
                                         <span class="table-remove">
-                                            <button type="submit" class="btn bg-danger btn-rounded btn-sm my-0">Eliminar
-                                                Libro</button>
+                                            <button type="submit" class="btn bg-danger btn-rounded btn-sm my-0">
+                                                Eliminar Libro
+                                            </button>
                                         </span>
                                     </form>
                                 </td>

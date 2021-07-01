@@ -7,7 +7,7 @@
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('ordenes-usuario.index') }}">Ordenes</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('ordenes-usuario.index') }}">Lista de Ordenes</a></li>
                 <li class="breadcrumb-item active" aria-current="page">ID-orden : {{ $ordenes_usuario->id }}</li>
             </ul>
         </nav>

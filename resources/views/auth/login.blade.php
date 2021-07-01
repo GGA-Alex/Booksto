@@ -20,10 +20,6 @@
 
                                     <div class="form-group">
                                         <label for="password">Contraseña:</label>
-                                        @if (Route::has('password.request'))
-                                            <a href="{{ route('password.request') }}" class="float-right text-dark">¿Se te
-                                                olvido la contraseña?</a>
-                                        @endif
                                         <input type="password" class="form-control mb-0" id="password" name="password"
                                             required autocomplete="current-password">
                                     </div>

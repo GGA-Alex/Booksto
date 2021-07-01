@@ -24,7 +24,8 @@
                         <div class="timeline-dots border-dark"><i class="ri-bookmark-fill"></i></div>
                         <h6 class="float-left mb-1">{{ $autor->nombre }}</h6>
                         <div class="d-inline-block w-100">
-                            <button wire:click="$emit('delete',{{ $autor->id }})" class="btn btn-danger mt-2 w-ful">
+                            <button wire:click="$emit('deletePivot',{{ $autor->id }})"
+                                class="btn btn-danger mt-2 w-ful">
                                 Eliminar Autor
                             </button>
                         </div>
@@ -32,4 +33,28 @@
             </ul>
         </div>
     </div>
+    @push('script')
+        <script>
+            Livewire.on('deletePivot', pivot => {
+                Swal.fire({
+                    title: '¿Estas seguro de que quieres eliminar al autor?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('add-author', 'delete', pivot);
+                        Swal.fire(
+                            'Autor eliminado!',
+                            'Se ha removido con exito el autor del  libro.',
+                        )
+                    }
+                })
+            })
+        </script>
+
+    @endpush
 </div>

@@ -56,14 +56,23 @@
                                     <td>
                                         @if (auth()->user()->id == $user->id)
                                             <p class="bg-danger p-2 text-white">
-                                                No puede cambiarle el rol a este usuario
+                                                No puede cambiarle el rol a este usuario por que es con el que inicio sesión
                                             </p>
                                         @else
-                                            <a href="{{ route('usuarios.edit', $user) }}"
-                                                class="btn btn-warning mt-2 text-white">
-                                                <i class="ri-pencil-line"></i>
-                                                Cambiar rol usuario
-                                            </a>
+                                            @if ($user->orders->count())
+                                                <p class="bg-danger p-2 text-white">
+                                                    No puede cambiarle el rol a este usuario por que tiene ordenes en su
+                                                    historial
+                                                </p>
+                                            @else
+                                                <a href="{{ route('usuarios.edit', $user) }}"
+                                                    class="btn btn-warning mt-2 text-white">
+                                                    <i class="ri-pencil-line"></i>
+                                                    Cambiar rol usuario
+                                                </a>
+                                            @endif
+
+
                                         @endif
                                     </td>
                                 </tr>

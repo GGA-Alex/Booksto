@@ -92,8 +92,6 @@ class CreateOrderController extends Controller
             return redirect()->away($payment->getApprovalLink());
         }
         catch (\PayPal\Exception\PayPalConnectionException $ex) {
-            // This will print the detailed information on the exception.
-            //REALLY HELPFUL FOR DEBUGGING
             echo $ex->getData();
         }
     }
@@ -103,6 +101,10 @@ class CreateOrderController extends Controller
             $this->authorize('userType', User::class);
         }
         $this->authorize('payment',$orden);
+        $array = count($request->all());
+        if ($array == 0){
+            return redirect()->route('orden.show',$orden)->with('delete','Error!');
+        }
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
                 config('services.paypal.client_id'),     // ClientID
@@ -117,29 +119,24 @@ class CreateOrderController extends Controller
         // (See bootstrap.php for more on `ApiContext`)
         $result = $payment->execute($execution, $apiContext);
 
-        
-        return redirect()->route('orden.status',$orden);
-    }
-
-    public function status(Order $orden){
-        if(auth()->user()){
-            $this->authorize('userType', User::class);
-        }
-        $this->authorize('payment',$orden);
         $orden->status = 2;
         $orden->save();
-        return redirect()->route('orden.show',$orden);
+        return redirect()->route('orden.show',$orden)->with('success','Orden pagada con éxito!');
     }
 
     public function pdf(Order $orden){
-
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
+        $this->authorize('author',$orden);
+        $this->authorize('status',$orden);
         $customer = new Party([
             'name'          => $orden->user->name,
             'address'       => '' . $orden->address,
             'custom_fields' => [
-                'Estado' => '' . $orden->state->name,
+                'Estado'    => '' . $orden->state->name,
                 'Municipio' => '' . $orden->municipality->name,
-                'Telefono' => ''. $orden->phone,
+                'Telefono'  => ''. $orden->phone,
             ],
             
         ]);
@@ -164,7 +161,7 @@ class CreateOrderController extends Controller
             ->currencyFormat('{SYMBOL}{VALUE}')
             ->currencyThousandsSeparator('.')
             ->currencyDecimalPoint(',')
-            ->filename($customer->name . ' ' . $customer->name)
+            ->filename('Recibo-' . $customer->name)
             ->addItems($items)
             ->logo(public_path('bookstore/images/logo.png'));
         // And return invoice itself to browser or have a different view

@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="iq-card-body">
-            <form action="{{ route('libros.update', $libro) }}" method="POST" class="mt-5">
+            <form action="{{ route('libros.update', $libro) }}" method="POST">
                 @method('PATCH')
                 @csrf
                 <div class="form-group">

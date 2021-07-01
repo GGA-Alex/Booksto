@@ -14,10 +14,12 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderAdminController;
-
-
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserProfileAdminController;
 
 Route::get('/', [PageController::class, 'HomePage'])->name('HomePage');
+
+Route::get('perfil-usuario', [UserProfileController::class,'index'])->middleware('auth')->name('user.profile');
 
 Route::get('search',SearchController::class)->name('search');
 
@@ -34,6 +36,7 @@ Route::get('carrito', [ShoppingCartController::class, 'index'])->name('shopping-
 Route::get('/email/verify', [EmailVerificationController::Class, 'notice'])->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::Class, 'verify'])->middleware(['auth', 'signed'])->name('verification.verify');
+
 //Rutas creacion de ordenes
 
 Route::middleware(['auth'])->group(Function(){
@@ -44,13 +47,11 @@ Route::middleware(['auth'])->group(Function(){
 
     Route::get('orden/{orden}', [CreateOrderController::class, 'show'])->name('orden.show');
 
-    Route::get('orden/{orden}/pdf', [CreateOrderController::class, 'pdf'])->name('orden.pdf');
+    Route::get('orden/{orden}/recibo-pdf', [CreateOrderController::class, 'pdf'])->name('orden.pdf');
 
     Route::get('orden/{orden}/pagar', [CreateOrderController::class, 'payment'])->name('orden.payment');
     
     Route::get('orden/{orden}/pago-aprovado', [CreateOrderController::class, 'approved'])->name('orden.approved');
-
-    Route::get('pago-aprovado/status/{orden}', [CreateOrderController::class, 'status'])->name('orden.status');
 });
 
 // Rutas administrador
@@ -58,6 +59,8 @@ Route::middleware(['auth'])->group(Function(){
 Route::middleware(['auth','web'])->group(function () {
 
     Route::redirect('admin','admin/dashboard');
+
+    Route::get('admin/perfil-usuario', [UserProfileAdminController::class,'index'])->name('admin.profile');
 
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
 

@@ -5,7 +5,7 @@
         <h5 class="mb-0">Editoriales</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('editoriales.index') }}">Listado de Editoriales</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $editoriale->nombre }}</li>
             </ul>
@@ -52,13 +52,13 @@
                                 </td>
                                 <td>
                                     @if ($editoriale->books->count())
-                                        <p class="iq-bg-danger p-1">No se puede eliminar esta editorial</p>
+                                        <p class="bg-danger p-1">No se puede eliminar esta editorial</p>
                                     @else
                                         <form action="{{ route('editoriales.destroy', $editoriale) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <span class="table-remove">
-                                                <button type="submit" class="btn iq-bg-danger btn-rounded btn-sm my-0">
+                                                <button type="submit" class="btn bg-danger btn-rounded btn-sm my-0">
                                                     Eliminar editorial
                                                 </button>
                                             </span>

@@ -15,17 +15,16 @@ class PageController extends Controller
     public function HomePage()
     {
         if(auth()->user()){
-            $pendiente = Order::where('status','1')->where('user_id',auth()->user()->id)->count();
+            if($tipo = auth()->user()->tipo == 'Admin'){
+                return redirect()->route('admin.index');
+            }else{
+                $pendiente = Order::where('status','1')->where('user_id',auth()->user()->id)->count();
+            }
         }else{
             $pendiente = 0;
         }
-        if(auth()->user()){
-            if($tipo = auth()->user()->tipo == 'Admin'){
-                return redirect()->route('admin.index');
-            }
-        }
-        $books = Book::with('authors:nombre', 'images:url,imageable_id')->where('category_id','1')->where('status','1')->get();
-        $authors = Author::with('images:url,imageable_id')->get();
+        $books = Book::with('authors', 'images')->where('category_id','1')->where('status','1')->get();
+        $authors = Author::with('images')->get();
         return view('Booksto.User.index', compact('books', 'authors', 'pendiente'));
     }
 

@@ -6,7 +6,7 @@
         <h5 class="mb-0">Editoriales</h5>
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Listado de Editoriales</li>
             </ul>
         </nav>

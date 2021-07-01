@@ -14,6 +14,22 @@
 @endsection
 
 @section('content')
+    @if (session('success'))
+        <div class="alert text-white bg-primary w-full" role="alert">
+            <div class="iq-alert-text">{{ session('success') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
+    @if (session('delete'))
+        <div class="alert text-white bg-danger w-full" role="alert">
+            <div class="iq-alert-text">{{ session('delete') }}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    @endif
     <div class="col-sm-12">
         <div class="iq-card">
             <div class="iq-card-body">

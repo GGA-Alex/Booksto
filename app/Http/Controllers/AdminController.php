@@ -21,7 +21,7 @@ class AdminController extends Controller
         $users = User::count();
         $editorials = Editorial::count();
         $categories = Category::count();
-        $orders = Order::with('user')->limit(10)->get();
+        $orders = Order::with('user')->where('status','2')->limit(10)->get();
         return view('Booksto.Admin.admin_index',compact('booksPublished','booksNotPublished','users','editorials','categories','orders'));
     }
 }

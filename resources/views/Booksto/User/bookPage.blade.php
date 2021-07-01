@@ -1,6 +1,5 @@
 @extends('layouts\Booksto - Layouts\booksto')
 
-
 @section('pageName')
     <div class="navbar-breadcrumb">
         <h5 class="mb-0">Detalles del libro</h5>

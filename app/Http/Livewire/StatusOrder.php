@@ -22,10 +22,6 @@ class StatusOrder extends Component
             session()->flash('create', 'El estatus de la orden se ha actualizado con exito.');
             return redirect(route('ordenes-usuario.edit',$this->ordenes_usuario));
         }
-            
-       
-        
-        
     }
 
     public function render()

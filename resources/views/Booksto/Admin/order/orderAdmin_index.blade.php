@@ -7,7 +7,7 @@
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Ordenes</li>
+                <li class="breadcrumb-item active" aria-current="page">Lista de Ordenes</li>
             </ul>
         </nav>
     </div>
