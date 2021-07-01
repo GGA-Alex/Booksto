@@ -43,7 +43,9 @@ Route::middleware(['auth'])->group(Function(){
     Route::get('orden/crear', [CreateOrderController::class, 'create'])->name('orden.crear');
 
     Route::get('orden/{orden}', [CreateOrderController::class, 'show'])->name('orden.show');
-    
+
+    Route::get('orden/{orden}/pdf', [CreateOrderController::class, 'pdf'])->name('orden.pdf');
+
     Route::get('orden/{orden}/pagar', [CreateOrderController::class, 'payment'])->name('orden.payment');
     
     Route::get('orden/{orden}/pago-aprovado', [CreateOrderController::class, 'approved'])->name('orden.approved');

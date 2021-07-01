@@ -138,11 +138,17 @@
                     </div>
                     <div class="col-sm-6"></div>
                     @if ($orden->status == '1')
-                        <a class="btn btn-primary d-block mt-3" href="{{ route('orden.payment', $orden) }}">Pagar
-                            ahora</a>
+                        <a class="btn btn-primary d-block mt-3" href="{{ route('orden.payment', $orden) }}">
+                            Pagar ahora
+                        </a>
                     @endif
-                    <div class="col-sm-6 text-right">
-                    </div>
+                    @if ($orden->status > 1 && $orden->status < 5)
+                        <div class="col-sm-6 text-right">
+                            <a href="{{ route('orden.pdf', $orden) }}" class="btn btn-primary mt-2">
+                                Descargar recibo de compra
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

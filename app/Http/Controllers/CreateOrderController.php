@@ -6,6 +6,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 
+
+use LaravelDaily\Invoices\Invoice;
+use LaravelDaily\Invoices\Classes\Buyer;
+use LaravelDaily\Invoices\Classes\Party;
+use LaravelDaily\Invoices\Classes\InvoiceItem;
+     
 class CreateOrderController extends Controller
 {
     
@@ -72,8 +78,8 @@ class CreateOrderController extends Controller
         $transaction->setAmount($amount);
 
         $redirectUrls = new \PayPal\Api\RedirectUrls();
-        $redirectUrls->setReturnUrl(route('ordenes.approved',$orden))
-            ->setCancelUrl(route('ordenes.show',$orden));
+        $redirectUrls->setReturnUrl(route('orden.approved',$orden))
+            ->setCancelUrl(route('orden.show',$orden));
 
         $payment = new \PayPal\Api\Payment();
         $payment->setIntent('sale')
@@ -112,7 +118,7 @@ class CreateOrderController extends Controller
         $result = $payment->execute($execution, $apiContext);
 
         
-        return redirect()->route('ordenes.status',$orden);
+        return redirect()->route('orden.status',$orden);
     }
 
     public function status(Order $orden){
@@ -122,6 +128,47 @@ class CreateOrderController extends Controller
         $this->authorize('payment',$orden);
         $orden->status = 2;
         $orden->save();
-        return redirect()->route('ordenes.show',$orden);
+        return redirect()->route('orden.show',$orden);
+    }
+
+    public function pdf(Order $orden){
+
+        $customer = new Party([
+            'name'          => $orden->user->name,
+            'address'       => '' . $orden->address,
+            'custom_fields' => [
+                'Estado' => '' . $orden->state->name,
+                'Municipio' => '' . $orden->municipality->name,
+                'Telefono' => ''. $orden->phone,
+            ],
+            
+        ]);
+        
+        $books = json_decode($orden->content);
+
+        $items = [];
+
+        foreach($books as $book){
+            $item = (new InvoiceItem())->title($book->name)->pricePerUnit($book->price)->quantity($book->qty);
+            array_push($items,$item);
+        }
+
+        $invoice = Invoice::make('recibo de compra')
+            ->sequence($orden->id)
+            ->serialNumberFormat('{SEQUENCE}')
+            ->buyer($customer)
+            ->date($orden->created_at)
+            ->dateFormat('d/m/Y')
+            ->currencySymbol('$')
+            ->currencyCode('MXN')
+            ->currencyFormat('{SYMBOL}{VALUE}')
+            ->currencyThousandsSeparator('.')
+            ->currencyDecimalPoint(',')
+            ->filename($customer->name . ' ' . $customer->name)
+            ->addItems($items)
+            ->logo(public_path('bookstore/images/logo.png'));
+        // And return invoice itself to browser or have a different view
+        return $invoice->stream();
+        
     }
 }
