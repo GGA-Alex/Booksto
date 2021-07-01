@@ -1,62 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Proyecto final - BooksTo
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+BooksTo es una tienda en línea enfocada en libros y a continuación explicaré sus funcionalidades:
 
-## About Laravel
+**Funcionalidades**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- BooksTo cuenta con dos tipos de roles:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- - Cliente → El usuario de tipo cliente puede realizar diferentes tareas:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  - - Agregar libros a su carrito.
+    - Realizar una orden.
+    - Pagar la orden utilizando el sistema de pago PayPal.
+    - Imprimir su recibo con los  datos de su orden, siempre y cuando su orden no esté en estado       "pendiente de pago" ni "anulada".
+    - Realizar el seguimiento de  sus órdenes.
 
-## Learning Laravel
+  - Administrador → El usuario tipo administrador puede realizar diferentes tareas:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+  - - CRUD autores, podrá eliminar  los autores siempre y cuando no estén relacionados con algún libro.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    - CRUD editoriales, podrá eliminar las editoriales siempre y cuando no estén relacionadas con algún libro.
 
-## Laravel Sponsors
+    - CRUD categorías, podrá eliminar las categorías siempre y cuando no estén relacionadas con algún libro.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    - CRUD libros.
 
-### Premium Partners
+    - - Dentro de la edición de un libro, el administrador puede hacer lo siguiente:
+      - Podrá ver, agregar y eliminar las imágenes que tenga almacenadas el libro,
+      - Podrá agregar uno, muchos o ningún autor al libro dependiendo de la situación.
+      - Podrá cambiar el status del libro de "publicado" a "no publicado" o viceversa.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+    - Cambiar los roles de los usuarios registrados, siempre y cuando no sea el usuario que inicio sesión ni los que ya han realizado órdenes dentro de la página.
 
-## Contributing
+    - Cambiar estatus de las órdenes.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Cada que se registre un nuevo usuario se mandara un correo electrónico a su correo para verificarlo.
 
-## Code of Conduct
+___
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Extras**
 
-## Security Vulnerabilities
+Se implementaron las siguientes funcionalidades extras dentro del programa:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Se creo una tabla llamada **images** y su respectivo modelo **Image** con la finalidad de poder tener una relación uno a muchos polimórfica con los modelos **Authors** y **Books**.
 
-## License
+- El sistema **genera un documento pdf** por cada orden que se haya pagado y se encuentre en el estatus "recibido", "enviado", y "entregado".
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Se implemento un sistema de pago en PayPal y para poder utilizarlo escribí dentro del **.env.example** las siguientes variables:
+
+- - PAYPAL_CLIENT_ID = 
+  - PAYPAL_SECRET = 
+
+- Para obtener estas variables seguí los siguientes pasos:
+
+- - Tener una cuenta en PayPal.
+  - Iniciar sesión en [Paypal developer](https://developer.paypal.com/home)
+  - Di click al botón **Create App**
+  - Ingrese el nombre de mi aplicación y en **Sandbox Business Account** seleccione el correo con terminación **@business.example.co** y procedí a dar click al botón **Create App**
+  - De manera automática me abre un modal y mme muestra la variable **CLIENT_ID** y **SECRET** , estas variables se guardan en el archivo **.env**.
+  - Por último para obtener el correo y su respectiva contraseña falso que se utilizara dentro de la aplicación, se tiene que ir a la sección **SANDBOX** y seleccionar **Accounts**.
+  - Dentro de Accounts me genero dos cuentas y utilice la cuenta con terminación **@personal.example**.
+  - Por último le di click al botón con los tres puntos y seleccione la opción **View/Edit Account** esta opción abría un modal con los datos de la cuenta, **correo electrónico falso** y su **contraseña**, esta cuenta es la que se ingresara para generar el pago de los libros.
+
+___
+
+**Autor**
+
+- Alejandro Gaytán Gutierrez
