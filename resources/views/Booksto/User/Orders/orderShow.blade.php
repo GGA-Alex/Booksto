@@ -6,7 +6,7 @@
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('HomePage') }}">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('ordenes.index') }}">Mis pedidos</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('orden.index') }}">Mis pedidos</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Pedido</li>
             </ul>
         </nav>
@@ -48,7 +48,7 @@
                                                     </span>
                                                 @break
                                                 @case(2)
-                                                    <span class="badge badge-primary">
+                                                    <span class="badge badge-dark">
                                                         Pago recibido
                                                     </span>
                                                 @break
@@ -58,12 +58,12 @@
                                                     </span>
                                                 @break
                                                 @case(4)
-                                                    <span class="badge badge-primary">
+                                                    <span class="badge badge-info">
                                                         Pedido entregado
                                                     </span>
                                                 @break
                                                 @case(5)
-                                                    <span class="badge badge-dark">
+                                                    <span class="badge badge-primary">
                                                         Pedido anulado
                                                     </span>
                                                 @break
@@ -138,7 +138,7 @@
                     </div>
                     <div class="col-sm-6"></div>
                     @if ($orden->status == '1')
-                        <a class="btn btn-primary d-block mt-3" href="{{ route('ordenes.payment', $orden) }}">Pagar
+                        <a class="btn btn-primary d-block mt-3" href="{{ route('orden.payment', $orden) }}">Pagar
                             ahora</a>
                     @endif
                     <div class="col-sm-6 text-right">

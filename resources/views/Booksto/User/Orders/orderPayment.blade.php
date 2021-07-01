@@ -142,7 +142,7 @@
                     </div>
                     <div class="col-sm-6"></div>
                     @if ($orden->status == '1')
-                        <a class="btn btn-primary d-block mt-3" href="{{ route('ordenes.payment', $orden) }}">Pagar
+                        <a class="btn btn-primary d-block mt-3" href="{{ route('orden.payment', $orden) }}">Pagar
                             ahora</a>
                     @endif
                     <div class="col-sm-6 text-right">

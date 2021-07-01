@@ -13,7 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderAdminController;
 
 
 
@@ -38,17 +38,17 @@ Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::Class, 've
 
 Route::middleware(['auth'])->group(Function(){
 
-    Route::get('ordenes', [CreateOrderController::class, 'index'])->name('ordenes.index');
+    Route::get('orden', [CreateOrderController::class, 'index'])->name('orden.index');
     
-    Route::get('ordenes/crear', [CreateOrderController::class, 'create'])->name('ordenes.crear');
+    Route::get('orden/crear', [CreateOrderController::class, 'create'])->name('orden.crear');
 
-    Route::get('ordenes/{orden}', [CreateOrderController::class, 'show'])->name('ordenes.show');
+    Route::get('orden/{orden}', [CreateOrderController::class, 'show'])->name('orden.show');
     
-    Route::get('ordenes/{orden}/pagar', [CreateOrderController::class, 'payment'])->name('ordenes.payment');
+    Route::get('orden/{orden}/pagar', [CreateOrderController::class, 'payment'])->name('orden.payment');
     
-    Route::get('ordenes/{orden}/pago-aprovado', [CreateOrderController::class, 'approved'])->name('ordenes.approved');
+    Route::get('orden/{orden}/pago-aprovado', [CreateOrderController::class, 'approved'])->name('orden.approved');
 
-    Route::get('pago-aprovado/status/{orden}', [CreateOrderController::class, 'status'])->name('ordenes.status');
+    Route::get('pago-aprovado/status/{orden}', [CreateOrderController::class, 'status'])->name('orden.status');
 });
 
 // Rutas administrador
@@ -79,6 +79,6 @@ Route::middleware(['auth','web'])->group(function () {
     
     Route::resource('admin/usuarios', UserController::class);
 
-    Route::resource('admin/ordenes', OrderController::class);
+    Route::resource('admin/ordenes-usuario', OrderAdminController::class);
 
 });

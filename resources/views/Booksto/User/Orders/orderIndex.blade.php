@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-    <a href="{{ route('ordenes.index') . '?status=1' }}" class="col">
+    <a href="{{ route('orden.index') . '?status=1' }}" class="col">
         <div class="iq-card text-white bg-danger iq-mb-3">
             <div class="iq-card-body text-center">
                 <h4 class="card-title text-white">PENDIENTE</h4>
@@ -27,10 +27,10 @@
             </div>
         </div>
     </a>
-    <a href="{{ route('ordenes.index') . '?status=2' }}" class="col">
+    <a href="{{ route('orden.index') . '?status=2' }}" class="col">
         <div class="iq-card text-white bg-dark iq-mb-3">
             <div class="iq-card-body text-center">
-                <h4 class="card-title text-white">PAGO RECIBIDO</h4>
+                <h4 class="card-title text-white">RECIBIDO</h4>
                 <blockquote class="blockquote mb-0">
                     <h3 class="text-white">
                         {{ $recibido }}
@@ -42,7 +42,7 @@
             </div>
         </div>
     </a>
-    <a href="{{ route('ordenes.index') . '?status=3' }}" class="col">
+    <a href="{{ route('orden.index') . '?status=3' }}" class="col">
         <div class="iq-card text-white bg-warning iq-mb-3">
             <div class="iq-card-body text-center">
                 <h4 class="card-title text-white">ENVIADO</h4>
@@ -57,7 +57,7 @@
             </div>
         </div>
     </a>
-    <a href="{{ route('ordenes.index') . '?status=4' }}" class="col">
+    <a href="{{ route('orden.index') . '?status=4' }}" class="col">
         <div class="iq-card text-white bg-info iq-mb-3">
             <div class="iq-card-body text-center">
                 <h4 class="card-title text-white">ENTREGADO</h4>
@@ -72,7 +72,7 @@
             </div>
         </div>
     </a>
-    <a href="{{ route('ordenes.index') . '?status=5' }}" class="col">
+    <a href="{{ route('orden.index') . '?status=5' }}" class="col">
         <div class="iq-card text-white bg-primary iq-mb-3">
             <div class="iq-card-body text-center">
                 <h4 class="card-title text-white">ANULADO</h4>
@@ -126,8 +126,8 @@
                             @default
 
                         @endswitch
-                        <h6 class="float-left mb-1">Orden: {{ $order->id }}</h6>
-                        <a href="{{ route('ordenes.show', $order) }}">
+                        <h6 class="float-left mb-1">Orden-ID: {{ $order->id }}</h6>
+                        <a href="{{ route('orden.show', $order) }}">
                             <span class="float-right mt-1">
                                 <span>
                                     Ver detalles de la orden..

@@ -10,7 +10,10 @@ class CreateOrderController extends Controller
 {
     
     public function index()
-    {
+    {   
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         $orders = Order::query()->where('user_id',auth()->user()->id);
 
         if(request('status')){
@@ -29,10 +32,16 @@ class CreateOrderController extends Controller
 
     public function create()
     {
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         return view('Booksto.User.Orders.order');
     }
 
     public function show(Order $orden){
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         $this->authorize('author',$orden);
         $items = json_decode($orden->content);
         return view('Booksto.User.Orders.orderShow',compact('orden','items'));
@@ -40,6 +49,9 @@ class CreateOrderController extends Controller
 
     public function payment(Order $orden)
     {
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         $this->authorize('payment',$orden);
 
         $apiContext = new \PayPal\Rest\ApiContext(
@@ -81,6 +93,9 @@ class CreateOrderController extends Controller
     }
 
     public function approved(Request $request, Order $orden){
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         $this->authorize('payment',$orden);
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
@@ -101,6 +116,9 @@ class CreateOrderController extends Controller
     }
 
     public function status(Order $orden){
+        if(auth()->user()){
+            $this->authorize('userType', User::class);
+        }
         $this->authorize('payment',$orden);
         $orden->status = 2;
         $orden->save();

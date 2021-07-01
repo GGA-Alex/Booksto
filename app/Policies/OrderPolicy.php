@@ -18,4 +18,17 @@ class OrderPolicy
         }
     }
 
+    public function payment(User $user, Order $order){
+        if ($order->user_id == $user->id){
+            if ($order->status == 1) {
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+        
+    }
+
 }

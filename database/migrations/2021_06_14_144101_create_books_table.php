@@ -23,7 +23,7 @@ class CreateBooksTable extends Migration
             $table->float('precio');
             $table->integer('año');
             $table->integer('edicion');
-            $table->enum('status', [Book::published, Book::notPublished]);
+            $table->enum('status', [Book::published, Book::notPublished])->default(1);
             $table->string('slug');
 
             $table->unsignedBigInteger('category_id');

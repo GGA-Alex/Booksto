@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('ordenes.index') }}">
+                    <a href="{{ route('ordenes-usuario.index') }}">
                         <i class="las la-truck"></i>
                         <span>Administrar ordenes</span>
                     </a>
@@ -69,12 +69,6 @@
                         <i class="ri-arrow-right-s-line iq-arrow-right"></i>
                     </a>
                     <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle" style="">
-                        <li>
-                            <a href="{{ route('profile.show') }}">
-                                <i class="las la-id-card-alt"></i>
-                                Perfil de usuario
-                            </a>
-                        </li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <li>

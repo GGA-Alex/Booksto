@@ -42,7 +42,7 @@
             </div>
             <div class="iq-card-body">
                 <div class="table-responsive">
-                    <table class=" data-tables table table-striped table-bordered text-center" style="width:100%">
+                    <table class="data-tables table table-striped table-bordered text-center" style="width:100%">
                         <thead>
                             <tr>
                                 <th style="width: 3%;">Id</th>

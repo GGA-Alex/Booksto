@@ -71,7 +71,7 @@
                             <i class="las la-trash"></i>
                             Borrar Carrito
                         </a>
-                        <a id="place-order" href="{{ route('ordenes.crear') }}" class="btn btn-primary d-block mt-3">
+                        <a id="place-order" href="{{ route('orden.crear') }}" class="btn btn-primary d-block mt-3">
                             Continuar con la compra
                         </a>
                     </div>
