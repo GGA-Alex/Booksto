@@ -29,7 +29,6 @@
                                 <th scope="col">ID-Orden</th>
                                 <th scope="col">Cliente</th>
                                 <th scope="col">Fecha</th>
-                                <th scope="col">Id orden</th>
                                 <th scope="col">Total</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Acciones</th>
@@ -42,7 +41,6 @@
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->user->name }}</td>
                                     <td>{{ $order->created_at->format('d/m/Y') }}</td>
-                                    <td>{{ $order->id }}</td>
                                     <td>{{ $order->total }}</td>
                                     <td>
                                         @switch($order->status)
