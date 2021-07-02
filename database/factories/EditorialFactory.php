@@ -22,7 +22,7 @@ class EditorialFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->sentence(2);
+        $name = $this->faker->regexify('[A-Za-z]{5,20}');;
         return [
             'nombre' => $name,
             'direccion' => $this->faker->streetAddress(),

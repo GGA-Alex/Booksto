@@ -66,11 +66,11 @@ Route::middleware(['auth','web'])->group(function () {
 
     Route::resource('admin/categorias', CategoryController::class);
 
-    Route::get('admins/categorias/{categoria}/libros', [CategoryController::class, 'libros'])->name('categorias.libros');
+    Route::get('admin/categorias/{categoria}/libros', [CategoryController::class, 'libros'])->name('categorias.libros');
 
     Route::resource('admin/editoriales', EditorialController::class);
 
-    Route::get('admins/editoriales/{editorial}/libros', [EditorialController::class, 'libros'])->name('editoriales.libros');
+    Route::get('admin/editoriales/{editorial}/libros', [EditorialController::class, 'libros'])->name('editoriales.libros');
 
     Route::resource('admin/autores', AuthorController::class);
 

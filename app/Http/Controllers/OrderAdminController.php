@@ -30,6 +30,9 @@ class OrderAdminController extends Controller
      */
     public function edit(Order $ordenes_usuario)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         $items = json_decode($ordenes_usuario->content);
         return view('Booksto.Admin.order.orderAdmin_edit',compact('ordenes_usuario','items'));
     }

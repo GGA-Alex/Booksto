@@ -132,11 +132,17 @@ class EditorialController extends Controller
      */
     public function destroy(Editorial $editoriale)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         $editoriale->delete();
         return redirect()->route('editoriales.index')->with('delete','Editorial eliminada con exito.');
     }
 
     public function libros(Editorial $editorial){
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         return view('Booksto.Admin.editorial.editorial_books',compact('editorial'));
     }
 }

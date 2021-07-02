@@ -50,6 +50,9 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         $request->validate([
             'nombre' => 'required|string|unique:books',
             'isbn' => 'required|string|unique:books',
@@ -87,6 +90,9 @@ class BookController extends Controller
      */
     public function show(Book $libro)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         return view('Booksto.Admin.book.book_show',compact('libro'));
     }
 
@@ -98,6 +104,9 @@ class BookController extends Controller
      */
     public function edit(Book $libro)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         return view('Booksto.Admin.book.book_formEdit', compact('libro'));
     }
 
@@ -110,6 +119,9 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $libro)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         $request->validate([
             'nombre' => ['required','string',Rule::unique('books')->ignore($libro->id)],
             'isbn' => ['required','string',Rule::unique('books')->ignore($libro->id)],
@@ -134,7 +146,9 @@ class BookController extends Controller
      */
     public function destroy(Book $libro)
     {
-        
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         foreach($libro->images as $image){
             Storage::delete([$image->url]);
             $image->delete();

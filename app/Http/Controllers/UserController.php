@@ -29,6 +29,9 @@ class UserController extends Controller
      */
     public function edit(User $usuario)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         return view('Booksto.Admin.user.user_form',compact('usuario'));
     }
 
@@ -41,6 +44,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $usuario)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         $request->validate([
             'tipo' => 'required|string',
         ]);

@@ -100,6 +100,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $categoria)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         $request->validate([
             'nombre' => ['required','string','min:5','max:255',Rule::unique('categories')->ignore($categoria->id)],
             'descripcion' => 'required|string|min:20|max:2000'
@@ -117,11 +120,17 @@ class CategoryController extends Controller
      */
     public function destroy(Category $categoria)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         $categoria->delete();
         return redirect()->route('categorias.index')->with('delete','Categoria eliminada con exito.');
     }
 
     public function libros(Category $categoria){
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         return view('Booksto.Admin.category.category_books',compact('categoria'));
     }
 }

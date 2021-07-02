@@ -48,8 +48,6 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        
-
         $request->validate([
             'nombre' => 'required|string|min:10|unique:authors',
             'pais' => 'required|string|min:5',
@@ -73,6 +71,9 @@ class AuthorController extends Controller
      */
     public function show(Author $autore)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         return view('Booksto.Admin.author.author_show',compact('autore'));
     }
 
@@ -84,6 +85,9 @@ class AuthorController extends Controller
      */
     public function edit(Author $autore)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         return view('Booksto.Admin.author.author_formEdit',compact('autore'));
     }
 
@@ -96,6 +100,9 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $autore)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         $request->validate([
             'nombre' => ['required','string','min:10',Rule::unique('authors')->ignore($autore->id)],
             'pais' => 'required|string|min:5',
@@ -114,6 +121,9 @@ class AuthorController extends Controller
      */
     public function destroy(Author $autore)
     {
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         foreach($autore->images as $image){
             Storage::delete([$image->url]);
             $image->delete();
@@ -123,11 +133,16 @@ class AuthorController extends Controller
     }
 
     public function libros(Author $autor){
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         return view('Booksto.Admin.author.author_books',compact('autor'));
     }
 
     public function imagenes(Author $autor, Request $request){
-        
+        if (!Gate::allows('admin')) {
+            abort(403);
+        }
         $request->validate([
             'file' => 'required|image|max:2048'
         ]);
